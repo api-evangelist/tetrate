@@ -10,11 +10,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Service Mesh
-  - Istio
-  - Envoy
-  - Kubernetes
   - Enterprise
+  - Envoy
+  - Istio
+  - Kubernetes
+  - Service Mesh
 url: >-
   https://raw.githubusercontent.com/api-evangelist/tetrate/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -32,10 +32,10 @@ apis:
     humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/
     baseURL: https://docs.tetrate.io/
     tags:
-      - Service Mesh
       - Management Plane
       - Multi-Cluster
       - REST
+      - Service Mesh
     properties:
       - type: Documentation
         url: https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/
@@ -52,9 +52,9 @@ apis:
     humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/gateway/v2/
     baseURL: https://docs.tetrate.io/
     tags:
+      - Egress
       - Gateway
       - Ingress
-      - Egress
       - Traffic Management
     properties:
       - type: Documentation
@@ -72,10 +72,10 @@ apis:
     humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/
     baseURL: https://docs.tetrate.io/
     tags:
-      - Traffic Management
       - Load Balancing
       - Routing
       - Service Mesh
+      - Traffic Management
     properties:
       - type: Documentation
         url: https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/
@@ -92,9 +92,9 @@ apis:
     humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/security/v2/
     baseURL: https://docs.tetrate.io/
     tags:
-      - Security
-      - mTLS
       - Authorization
+      - mTLS
+      - Security
       - Service Mesh
     properties:
       - type: Documentation
@@ -112,10 +112,10 @@ apis:
     humanURL: https://docs.tetrate.io/service-bridge/latest/refs/
     baseURL: https://docs.tetrate.io/
     tags:
-      - Observability
       - Metrics
-      - Tracing
+      - Observability
       - Telemetry
+      - Tracing
     properties:
       - type: Documentation
         url: https://docs.tetrate.io/service-bridge/latest/refs/
