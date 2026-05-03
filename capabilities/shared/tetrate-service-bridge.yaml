@@ -1,0 +1,559 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tetrate Service Bridge REST API"
+  description: "Management plane REST API for Tetrate Service Bridge providing CRUD operations on organizations, tenants, workspaces, clusters, applications, APIs, gateway groups, traffic groups, and security groups."
+  tags:
+    - Tetrate
+    - Service Mesh
+    - Istio
+    - Multi-Cluster
+    - Management Plane
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TSB_TOKEN: TSB_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: tsb
+      baseUri: https://tsbhost:8443/v2
+      description: "Tetrate Service Bridge management plane REST API"
+      authentication:
+        type: apikey
+        key: x-tetrate-token
+        value: "{{TSB_TOKEN}}"
+        placement: header
+      resources:
+        - name: organizations
+          path: /organizations
+          description: "Manage TSB organizations"
+          operations:
+            - name: list-organizations
+              method: GET
+              description: "List all organizations"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-organization
+              method: POST
+              description: "Create a new organization"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  spec:
+                    displayName: "{{tools.displayName}}"
+                    description: "{{tools.description}}"
+
+        - name: organization
+          path: /organizations/{organization}
+          description: "Manage a specific organization"
+          operations:
+            - name: get-organization
+              method: GET
+              description: "Get organization details"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-organization
+              method: DELETE
+              description: "Delete an organization"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: tenants
+          path: /organizations/{organization}/tenants
+          description: "Manage tenants within an organization"
+          operations:
+            - name: list-tenants
+              method: GET
+              description: "List all tenants in an organization"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-tenant
+              method: POST
+              description: "Create a new tenant"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  spec:
+                    displayName: "{{tools.displayName}}"
+                    description: "{{tools.description}}"
+
+        - name: tenant
+          path: /organizations/{organization}/tenants/{tenant}
+          description: "Manage a specific tenant"
+          operations:
+            - name: get-tenant
+              method: GET
+              description: "Get tenant details"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization name"
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+                  description: "Tenant name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-tenant
+              method: DELETE
+              description: "Delete a tenant"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: workspaces
+          path: /organizations/{organization}/tenants/{tenant}/workspaces
+          description: "Manage workspaces within a tenant"
+          operations:
+            - name: list-workspaces
+              method: GET
+              description: "List all workspaces in a tenant"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-workspace
+              method: POST
+              description: "Create a new workspace"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  spec:
+                    displayName: "{{tools.displayName}}"
+                    namespaceSelector:
+                      names: "{{tools.namespaces}}"
+
+        - name: clusters
+          path: /organizations/{organization}/clusters
+          description: "Manage onboarded Kubernetes clusters"
+          operations:
+            - name: list-clusters
+              method: GET
+              description: "List all onboarded clusters"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-cluster
+              method: POST
+              description: "Onboard a new Kubernetes cluster"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  spec:
+                    network: "{{tools.network}}"
+                    tier1Cluster: "{{tools.tier1Cluster}}"
+
+        - name: applications
+          path: /organizations/{organization}/tenants/{tenant}/applications
+          description: "Manage applications within a tenant"
+          operations:
+            - name: list-applications
+              method: GET
+              description: "List all applications in a tenant"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-application
+              method: POST
+              description: "Create a new application"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  spec:
+                    workspace: "{{tools.workspace}}"
+
+        - name: apis
+          path: /organizations/{organization}/tenants/{tenant}/applications/{application}/apis
+          description: "Manage APIs registered to an application"
+          operations:
+            - name: list-apis
+              method: GET
+              description: "List all APIs in an application"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+                - name: application
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-api
+              method: POST
+              description: "Register a new API using an OpenAPI v3 spec"
+              inputParameters:
+                - name: organization
+                  in: path
+                  type: string
+                  required: true
+                - name: tenant
+                  in: path
+                  type: string
+                  required: true
+                - name: application
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  spec:
+                    openapi: "{{tools.openapi}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: tsb-management-api
+      resources:
+        - path: /v1/organizations
+          name: organizations
+          description: "TSB organization management"
+          operations:
+            - method: GET
+              name: list-organizations
+              description: "List all organizations"
+              call: "tsb.list-organizations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-organization
+              description: "Create an organization"
+              call: "tsb.create-organization"
+              with:
+                name: "rest.name"
+                displayName: "rest.displayName"
+                description: "rest.description"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tenants
+          name: tenants
+          description: "TSB tenant management"
+          operations:
+            - method: GET
+              name: list-tenants
+              description: "List all tenants"
+              call: "tsb.list-tenants"
+              with:
+                organization: "rest.organization"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-tenant
+              description: "Create a tenant"
+              call: "tsb.create-tenant"
+              with:
+                organization: "rest.organization"
+                name: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/workspaces
+          name: workspaces
+          description: "TSB workspace management"
+          operations:
+            - method: GET
+              name: list-workspaces
+              description: "List all workspaces"
+              call: "tsb.list-workspaces"
+              with:
+                organization: "rest.organization"
+                tenant: "rest.tenant"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/clusters
+          name: clusters
+          description: "TSB cluster management"
+          operations:
+            - method: GET
+              name: list-clusters
+              description: "List onboarded clusters"
+              call: "tsb.list-clusters"
+              with:
+                organization: "rest.organization"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: tsb-management-mcp
+      transport: http
+      tools:
+        - name: list-organizations
+          description: "List all TSB organizations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tsb.list-organizations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-tenants
+          description: "List all tenants within an organization"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tsb.list-tenants"
+          with:
+            organization: "tools.organization"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-tenant
+          description: "Create a new tenant within an organization"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "tsb.create-tenant"
+          with:
+            organization: "tools.organization"
+            name: "tools.name"
+            displayName: "tools.displayName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-workspaces
+          description: "List all workspaces in a tenant"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tsb.list-workspaces"
+          with:
+            organization: "tools.organization"
+            tenant: "tools.tenant"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-workspace
+          description: "Create a new workspace with namespace assignments"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "tsb.create-workspace"
+          with:
+            organization: "tools.organization"
+            tenant: "tools.tenant"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-clusters
+          description: "List all onboarded Kubernetes clusters"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tsb.list-clusters"
+          with:
+            organization: "tools.organization"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-applications
+          description: "List all applications in a tenant"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tsb.list-applications"
+          with:
+            organization: "tools.organization"
+            tenant: "tools.tenant"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-apis
+          description: "List all APIs registered to an application"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tsb.list-apis"
+          with:
+            organization: "tools.organization"
+            tenant: "tools.tenant"
+            application: "tools.application"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-api
+          description: "Register a new API with an OpenAPI v3 specification"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "tsb.create-api"
+          with:
+            organization: "tools.organization"
+            tenant: "tools.tenant"
+            application: "tools.application"
+            name: "tools.name"
+            openapi: "tools.openapi"
+          outputParameters:
+            - type: object
+              mapping: "$."

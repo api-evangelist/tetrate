@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://tsb.example.com:8443/v2/organizations/myorg/tenants/platform-team/applications/checkout-app/apis",
+    "headers": {
+      "Authorization": "Basic base64encodedcredentials",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "checkout-api",
+      "spec": {
+        "openapi": "openapi: 3.0.3\ninfo:\n  title: Checkout API\n  version: '1.0'\npaths:\n  /checkout:\n    post:\n      summary: Create Checkout\n      responses:\n        '200':\n          description: Checkout created\n",
+        "workloadSelector": {
+          "namespace": "checkout",
+          "labels": {
+            "app": "checkout"
+          }
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "checkout-api",
+      "fqn": "organizations/myorg/tenants/platform-team/applications/checkout-app/apis/checkout-api",
+      "etag": "\"api001\"",
+      "spec": {
+        "openapi": "openapi: 3.0.3\ninfo:\n  title: Checkout API\n  version: '1.0'\npaths:\n  /checkout:\n    post:\n      summary: Create Checkout\n      responses:\n        '200':\n          description: Checkout created\n",
+        "httpServers": [
+          {
+            "name": "checkout-app-server",
+            "port": 80,
+            "hostname": "checkout.example.com"
+          }
+        ],
+        "endpoints": [
+          {
+            "path": "/checkout",
+            "methods": ["POST"],
+            "hostnames": ["checkout.example.com"]
+          }
+        ]
+      }
+    }
+  }
+}

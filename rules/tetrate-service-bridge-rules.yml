@@ -1,0 +1,96 @@
+extends: spectral:oas
+rules:
+  # TSB-specific: All paths must start with /v2/
+  tsb-path-version-prefix:
+    description: All TSB REST API paths must start with /v2/
+    message: Path "{{value}}" must start with /v2/
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v2/"
+
+  # TSB resource hierarchy: org-scoped resources must include organization param
+  tsb-org-scoped-paths:
+    description: Organization-scoped resources must include {organization} path parameter
+    message: Paths scoped to an organization must contain {organization} parameter
+    severity: warn
+    given: "$.paths[?(@property.startsWith('/v2/organizations/'))]"
+    then:
+      function: truthy
+
+  # TSB: operationIds must be camelCase
+  tsb-operation-id-camel-case:
+    description: All operationIds must be camelCase
+    message: OperationId "{{value}}" should be camelCase
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # TSB: responses must include etag for mutable resources
+  tsb-200-content-type-json:
+    description: Successful responses must return application/json content type
+    message: Response 200 must have application/json content
+    severity: warn
+    given: "$.paths[*][get,post,put].responses.200"
+    then:
+      field: content
+      function: truthy
+
+  # TSB: DELETE operations should not have a request body
+  tsb-delete-no-body:
+    description: DELETE operations should not have a request body
+    message: DELETE operation should not include requestBody
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      field: requestBody
+      function: falsy
+
+  # TSB: All schemas must have descriptions
+  tsb-schema-description:
+    description: All named schemas must have a description
+    message: Schema "{{path}}" must have a description
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  # TSB: Security must be defined on all mutating operations
+  tsb-security-on-mutations:
+    description: POST, PUT, DELETE operations must have security defined
+    message: Mutating operation must define security requirements
+    severity: error
+    given: "$.paths[*][post,put,delete]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: [security]
+            - {}
+
+  # TSB: Tags must use Title Case
+  tsb-tags-title-case:
+    description: Tags must use Title Case format
+    message: Tag "{{value}}" should use Title Case
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  # TSB: Resource list operations must return arrays
+  tsb-list-returns-array:
+    description: List operations (operationId starting with 'list') must return an array property
+    message: List operation should return a response with an array property
+    severity: info
+    given: "$.paths[*].get[?(@.operationId && @.operationId.startsWith('list'))]"
+    then:
+      function: truthy

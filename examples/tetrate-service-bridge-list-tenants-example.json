@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://tsb.example.com:8443/v2/organizations/myorg/tenants",
+    "headers": {
+      "Authorization": "Basic base64encodedcredentials",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "tenants": [
+        {
+          "name": "platform-team",
+          "fqn": "organizations/myorg/tenants/platform-team",
+          "displayName": "Platform Team",
+          "description": "Infrastructure and platform engineering team",
+          "etag": "\"abc123\"",
+          "spec": {
+            "displayName": "Platform Team",
+            "description": "Infrastructure and platform engineering team",
+            "deletionProtectionEnabled": false
+          }
+        },
+        {
+          "name": "app-team",
+          "fqn": "organizations/myorg/tenants/app-team",
+          "displayName": "Application Team",
+          "description": "Application development team",
+          "etag": "\"def456\"",
+          "spec": {
+            "displayName": "Application Team",
+            "description": "Application development team",
+            "deletionProtectionEnabled": false
+          }
+        }
+      ]
+    }
+  }
+}

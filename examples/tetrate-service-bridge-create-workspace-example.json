@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://tsb.example.com:8443/v2/organizations/myorg/tenants/platform-team/workspaces",
+    "headers": {
+      "Authorization": "Basic base64encodedcredentials",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "frontend-workspace",
+      "spec": {
+        "displayName": "Frontend Workspace",
+        "description": "Workspace for frontend microservices",
+        "namespaceSelector": {
+          "names": [
+            "prod-cluster/frontend",
+            "prod-cluster/api-gateway"
+          ]
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "frontend-workspace",
+      "fqn": "organizations/myorg/tenants/platform-team/workspaces/frontend-workspace",
+      "displayName": "Frontend Workspace",
+      "description": "Workspace for frontend microservices",
+      "etag": "\"xyz789\"",
+      "spec": {
+        "displayName": "Frontend Workspace",
+        "description": "Workspace for frontend microservices",
+        "namespaceSelector": {
+          "names": [
+            "prod-cluster/frontend",
+            "prod-cluster/api-gateway"
+          ]
+        }
+      }
+    }
+  }
+}

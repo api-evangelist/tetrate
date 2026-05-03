@@ -1,0 +1,1213 @@
+openapi: 3.0.3
+info:
+  title: Tetrate Service Bridge REST API
+  description: >-
+    The Tetrate Service Bridge (TSB) REST API provides programmatic management
+    of the TSB control plane. It exposes endpoints for managing organizations,
+    tenants, workspaces, cluster onboarding, gateway configuration, traffic
+    routing, security policies, and application/API lifecycle management across
+    multi-cluster, multi-cloud service mesh environments. The API uses
+    Protobuf-backed REST resources and supports standard CRUD operations via
+    HTTP verbs.
+  version: '2.0'
+  contact:
+    name: Tetrate
+    url: https://tetrate.io/
+  license:
+    name: Proprietary
+    url: https://tetrate.io/
+externalDocs:
+  description: Tetrate Service Bridge REST API Guide
+  url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
+servers:
+  - url: https://{tsb-host}:8443/v2
+    description: TSB Management Plane REST API
+    variables:
+      tsb-host:
+        default: tsb.example.com
+        description: Hostname of your TSB management plane
+security:
+  - BasicAuth: []
+  - JWTToken: []
+tags:
+  - name: Organizations
+    description: Manage TSB organizations
+  - name: Tenants
+    description: Manage tenants within organizations
+  - name: Workspaces
+    description: Manage workspaces within tenants
+  - name: Clusters
+    description: Manage onboarded Kubernetes clusters
+  - name: Applications
+    description: Manage application objects
+  - name: APIs
+    description: Manage API objects within applications
+  - name: Gateway Groups
+    description: Manage gateway groups and ingress/egress gateways
+  - name: Traffic Groups
+    description: Manage traffic settings and service routes
+  - name: Security Groups
+    description: Manage security settings and policies
+  - name: RBAC
+    description: Manage roles, bindings, and access policies
+
+paths:
+  /organizations:
+    get:
+      operationId: listOrganizations
+      summary: List Organizations
+      description: Returns a list of all TSB organizations.
+      tags:
+        - Organizations
+      responses:
+        '200':
+          description: List of organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOrganization
+      summary: Create Organization
+      description: Creates a new TSB organization.
+      tags:
+        - Organizations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      responses:
+        '200':
+          description: Created organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /organizations/{organization}:
+    get:
+      operationId: getOrganization
+      summary: Get Organization
+      description: Returns the details of a specific organization.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: Organization details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateOrganization
+      summary: Update Organization
+      description: Updates an existing organization. The etag from a GET must be included.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      responses:
+        '200':
+          description: Updated organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    delete:
+      operationId: deleteOrganization
+      summary: Delete Organization
+      description: Deletes an organization and all its child resources.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: Organization deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /organizations/{organization}/tenants:
+    get:
+      operationId: listTenants
+      summary: List Tenants
+      description: Returns all tenants within an organization.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of tenants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantList'
+    post:
+      operationId: createTenant
+      summary: Create Tenant
+      description: Creates a new tenant within an organization.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tenant'
+      responses:
+        '200':
+          description: Created tenant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+
+  /organizations/{organization}/tenants/{tenant}:
+    get:
+      operationId: getTenant
+      summary: Get Tenant
+      description: Returns the details of a specific tenant.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      responses:
+        '200':
+          description: Tenant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+    put:
+      operationId: updateTenant
+      summary: Update Tenant
+      description: Updates an existing tenant configuration.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tenant'
+      responses:
+        '200':
+          description: Updated tenant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+    delete:
+      operationId: deleteTenant
+      summary: Delete Tenant
+      description: Deletes a tenant and all its workspaces.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      responses:
+        '200':
+          description: Tenant deleted
+
+  /organizations/{organization}/tenants/{tenant}/workspaces:
+    get:
+      operationId: listWorkspaces
+      summary: List Workspaces
+      description: Returns all workspaces within a tenant.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      responses:
+        '200':
+          description: List of workspaces
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceList'
+    post:
+      operationId: createWorkspace
+      summary: Create Workspace
+      description: Creates a new workspace within a tenant.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+      responses:
+        '200':
+          description: Created workspace
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+
+  /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}:
+    get:
+      operationId: getWorkspace
+      summary: Get Workspace
+      description: Returns the details of a specific workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      responses:
+        '200':
+          description: Workspace details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+    put:
+      operationId: updateWorkspace
+      summary: Update Workspace
+      description: Updates an existing workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workspace'
+      responses:
+        '200':
+          description: Updated workspace
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+    delete:
+      operationId: deleteWorkspace
+      summary: Delete Workspace
+      description: Deletes a workspace and all its groups.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      responses:
+        '200':
+          description: Workspace deleted
+
+  /organizations/{organization}/clusters:
+    get:
+      operationId: listClusters
+      summary: List Clusters
+      description: Returns all Kubernetes clusters onboarded to the organization.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of clusters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterList'
+    post:
+      operationId: createCluster
+      summary: Create Cluster
+      description: Onboards a new Kubernetes cluster to TSB.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '200':
+          description: Onboarded cluster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+
+  /organizations/{organization}/clusters/{cluster}:
+    get:
+      operationId: getCluster
+      summary: Get Cluster
+      description: Returns the details of a specific onboarded cluster.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/cluster'
+      responses:
+        '200':
+          description: Cluster details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+    put:
+      operationId: updateCluster
+      summary: Update Cluster
+      description: Updates cluster configuration.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/cluster'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '200':
+          description: Updated cluster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+    delete:
+      operationId: deleteCluster
+      summary: Delete Cluster
+      description: Removes a cluster from TSB management.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/cluster'
+      responses:
+        '200':
+          description: Cluster deleted
+
+  /organizations/{organization}/tenants/{tenant}/applications:
+    get:
+      operationId: listApplications
+      summary: List Applications
+      description: Returns all applications within a tenant.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationList'
+    post:
+      operationId: createApplication
+      summary: Create Application
+      description: Creates a new application within a tenant.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+      responses:
+        '200':
+          description: Created application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+
+  /organizations/{organization}/tenants/{tenant}/applications/{application}:
+    get:
+      operationId: getApplication
+      summary: Get Application
+      description: Returns the details of a specific application.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+    put:
+      operationId: updateApplication
+      summary: Update Application
+      description: Updates an existing application.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+      responses:
+        '200':
+          description: Updated application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+    delete:
+      operationId: deleteApplication
+      summary: Delete Application
+      description: Deletes an application and its registered APIs.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+      responses:
+        '200':
+          description: Application deleted
+
+  /organizations/{organization}/tenants/{tenant}/applications/{application}/apis:
+    get:
+      operationId: listAPIs
+      summary: List APIs
+      description: Returns all APIs registered to an application.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+      responses:
+        '200':
+          description: List of APIs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIList'
+    post:
+      operationId: createAPI
+      summary: Create API
+      description: Registers a new API within an application using OpenAPI v3 spec.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/API'
+      responses:
+        '200':
+          description: Registered API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/API'
+
+  /organizations/{organization}/tenants/{tenant}/applications/{application}/apis/{api}:
+    get:
+      operationId: getAPI
+      summary: Get API
+      description: Returns the details of a specific API.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+        - $ref: '#/components/parameters/api'
+      responses:
+        '200':
+          description: API details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/API'
+    put:
+      operationId: updateAPI
+      summary: Update API
+      description: Updates an existing API registration.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+        - $ref: '#/components/parameters/api'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/API'
+      responses:
+        '200':
+          description: Updated API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/API'
+    delete:
+      operationId: deleteAPI
+      summary: Delete API
+      description: Removes an API registration from an application.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/application'
+        - $ref: '#/components/parameters/api'
+      responses:
+        '200':
+          description: API deleted
+
+  /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/gatewaygroups:
+    get:
+      operationId: listGatewayGroups
+      summary: List Gateway Groups
+      description: Returns all gateway groups within a workspace.
+      tags:
+        - Gateway Groups
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      responses:
+        '200':
+          description: List of gateway groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayGroupList'
+    post:
+      operationId: createGatewayGroup
+      summary: Create Gateway Group
+      description: Creates a new gateway group within a workspace.
+      tags:
+        - Gateway Groups
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayGroup'
+      responses:
+        '200':
+          description: Created gateway group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayGroup'
+
+  /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/trafficgroups:
+    get:
+      operationId: listTrafficGroups
+      summary: List Traffic Groups
+      description: Returns all traffic groups within a workspace.
+      tags:
+        - Traffic Groups
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      responses:
+        '200':
+          description: List of traffic groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrafficGroupList'
+    post:
+      operationId: createTrafficGroup
+      summary: Create Traffic Group
+      description: Creates a new traffic group for managing service routing.
+      tags:
+        - Traffic Groups
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrafficGroup'
+      responses:
+        '200':
+          description: Created traffic group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrafficGroup'
+
+  /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/securitygroups:
+    get:
+      operationId: listSecurityGroups
+      summary: List Security Groups
+      description: Returns all security groups within a workspace.
+      tags:
+        - Security Groups
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      responses:
+        '200':
+          description: List of security groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroupList'
+    post:
+      operationId: createSecurityGroup
+      summary: Create Security Group
+      description: Creates a new security group for managing authorization policies.
+      tags:
+        - Security Groups
+      parameters:
+        - $ref: '#/components/parameters/organization'
+        - $ref: '#/components/parameters/tenant'
+        - $ref: '#/components/parameters/workspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityGroup'
+      responses:
+        '200':
+          description: Created security group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityGroup'
+
+  /organizations/{organization}/users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Returns all users within the organization.
+      tags:
+        - RBAC
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+
+  /organizations/{organization}/roles:
+    get:
+      operationId: listRoles
+      summary: List Roles
+      description: Returns all RBAC roles within the organization.
+      tags:
+        - RBAC
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+    post:
+      operationId: createRole
+      summary: Create Role
+      description: Creates a new custom RBAC role.
+      tags:
+        - RBAC
+      parameters:
+        - $ref: '#/components/parameters/organization'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: Created role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with TSB username and password
+    JWTToken:
+      type: apiKey
+      in: header
+      name: x-tetrate-token
+      description: JWT token authentication using the x-tetrate-token header
+
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
+    workspace:
+      name: workspace
+      in: path
+      required: true
+      description: Workspace name
+      schema:
+        type: string
+    cluster:
+      name: cluster
+      in: path
+      required: true
+      description: Cluster name
+      schema:
+        type: string
+    application:
+      name: application
+      in: path
+      required: true
+      description: Application name
+      schema:
+        type: string
+    api:
+      name: api
+      in: path
+      required: true
+      description: API name
+      schema:
+        type: string
+
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+
+    ResourceMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Resource name (1-63 chars, lowercase alphanumeric with hyphens)
+        fqn:
+          type: string
+          description: Fully-qualified name
+        displayName:
+          type: string
+        description:
+          type: string
+        etag:
+          type: string
+          description: Version tag for optimistic concurrency
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+
+    Organization:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            deletionProtectionEnabled:
+              type: boolean
+
+    OrganizationList:
+      type: object
+      properties:
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+
+    Tenant:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            deletionProtectionEnabled:
+              type: boolean
+
+    TenantList:
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+
+    Workspace:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            namespaceSelector:
+              type: object
+              description: Selects namespaces assigned to this workspace
+              properties:
+                names:
+                  type: array
+                  items:
+                    type: string
+                  description: Namespaces in cluster/namespace format
+
+    WorkspaceList:
+      type: object
+      properties:
+        workspaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+
+    Cluster:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            tokenTtl:
+              type: string
+              description: TTL for the cluster service account token
+            network:
+              type: string
+              description: Network identifier for multi-network deployments
+            tier1Cluster:
+              type: boolean
+              description: Whether this cluster is a Tier-1 gateway cluster
+
+    ClusterList:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
+
+    Application:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            workspace:
+              type: string
+              description: FQN of the workspace hosting this application
+
+    ApplicationList:
+      type: object
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+
+    API:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            openapi:
+              type: string
+              description: Raw OpenAPI v3 spec defining the API endpoints
+            workloadSelector:
+              type: object
+              description: Gateway workload specification
+            httpServers:
+              type: array
+              description: List of gateway servers exposing the API (output-only)
+              items:
+                type: object
+            endpoints:
+              type: array
+              description: HTTP endpoints generated from OpenAPI spec (output-only)
+              items:
+                $ref: '#/components/schemas/HTTPEndpoint'
+
+    APIList:
+      type: object
+      properties:
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/API'
+
+    HTTPEndpoint:
+      type: object
+      properties:
+        path:
+          type: string
+        methods:
+          type: array
+          items:
+            type: string
+        hostnames:
+          type: array
+          items:
+            type: string
+
+    GatewayGroup:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            namespaceSelector:
+              type: object
+            configMode:
+              type: string
+              enum:
+                - BRIDGED
+                - DIRECT
+
+    GatewayGroupList:
+      type: object
+      properties:
+        gatewayGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GatewayGroup'
+
+    TrafficGroup:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            namespaceSelector:
+              type: object
+            configMode:
+              type: string
+              enum:
+                - BRIDGED
+                - DIRECT
+
+    TrafficGroupList:
+      type: object
+      properties:
+        trafficGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrafficGroup'
+
+    SecurityGroup:
+      allOf:
+        - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            namespaceSelector:
+              type: object
+            configMode:
+              type: string
+              enum:
+                - BRIDGED
+                - DIRECT
+
+    SecurityGroupList:
+      type: object
+      properties:
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityGroup'
+
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        displayName:
+          type: string
+        fqn:
+          type: string
+
+    UserList:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+
+    Role:
+      type: object
+      properties:
+        name:
+          type: string
+        fqn:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  type: string
+              verbs:
+                type: array
+                items:
+                  type: string
+
+    RoleList:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'

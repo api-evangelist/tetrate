@@ -5,8 +5,10 @@ description: >-
   Bridge (TSB), a multi-cluster, multi-cloud service mesh management platform
   built on Istio and Envoy Proxy. Tetrate offers management APIs for traffic,
   security, and observability across distributed microservice environments, as
-  well as Tetrate Istio Distro, a vetted upstream Istio distribution with
-  FIPS-verified builds.
+  well as Tetrate Istio Distro (TID), a vetted upstream Istio distribution with
+  FIPS-verified builds. TSB exposes a REST management plane API for
+  programmatic control of organizations, tenants, workspaces, clusters,
+  applications, gateways, traffic routing, and security policies.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -18,9 +20,34 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/tetrate/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-03-18'
+modified: '2026-05-03'
 specificationVersion: '0.19'
 apis:
+  - aid: tetrate:tsb-rest-api
+    name: Tetrate Service Bridge REST API
+    description: >-
+      The Tetrate Service Bridge (TSB) REST API provides programmatic management
+      of the TSB control plane, including organizations, tenants, workspaces,
+      cluster onboarding, application and API lifecycle management, gateway
+      groups, traffic settings, and security policies. Authentication supports
+      HTTP Basic and JWT token via x-tetrate-token header. The API base path is
+      /v2 on port 8443.
+    humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
+    baseURL: https://tsbhost:8443/v2
+    tags:
+      - Management Plane
+      - Multi-Cluster
+      - REST
+      - Service Mesh
+    properties:
+      - type: Documentation
+        url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
+      - type: OpenAPI
+        url: openapi/tetrate-service-bridge-openapi.yml
+      - type: JSONSchema
+        url: json-schema/tsb-resource-schema.json
+      - type: JSONStructure
+        url: json-structure/tsb-resource-structure.json
   - aid: tetrate:tsb-platform-api
     name: Tetrate Service Bridge Platform API
     description: >-
@@ -140,6 +167,16 @@ common:
     url: https://tetrate.io/tetrate-service-bridge/
   - type: Community
     url: https://tetrate.io/community/
+  - type: OpenAPI
+    url: openapi/tetrate-service-bridge-openapi.yml
+  - type: JSONSchema
+    url: json-schema/tsb-resource-schema.json
+  - type: JSONStructure
+    url: json-structure/tsb-resource-structure.json
+  - type: JSON-LD
+    url: json-ld/tetrate-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/tetrate-vocabulary.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,98 +1,78 @@
-# Tetrate (tetrate)
-Tetrate is an enterprise service mesh company that provides Tetrate Service Bridge (TSB), a multi-cluster, multi-cloud service mesh management platform built on Istio and Envoy Proxy. Tetrate offers management APIs for traffic, security, and observability across distributed microservice environments, as well as Tetrate Istio Distro, a vetted upstream Istio distribution with FIPS-verified builds.
+# Tetrate
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/tetrate/refs/heads/main/apis.yml)
+Tetrate is an enterprise service mesh company that provides Tetrate Service Bridge (TSB), a multi-cluster, multi-cloud service mesh management platform built on Istio and Envoy Proxy. Tetrate offers management APIs for traffic, security, and observability across distributed microservice environments, as well as Tetrate Istio Distro (TID), a vetted upstream Istio distribution with FIPS-verified builds.
 
-## Scope
-
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
-
-## Tags:
-
- - Service Mesh, Istio, Envoy, Kubernetes, Enterprise
-
-## Timestamps
-
-- **Created:** 2026-03-16 
-- **Modified:** 2026-03-18 
+**Website:** https://tetrate.io/
+**Documentation:** https://docs.tetrate.io/
+**GitHub:** https://github.com/tetrateio
 
 ## APIs
 
-### Tetrate Service Bridge Platform API
-The Tetrate Service Bridge (TSB) Platform API provides programmatic management of the TSB control plane, including organizations, tenants, workspaces, and cluster onboarding. It exposes REST and gRPC endpoints for configuring the global service mesh management plane across multi-cluster and multi-cloud environments.
+### [Tetrate Service Bridge REST API](https://docs.tetrate.io/service-bridge/reference/rest-api/guide)
+Management plane REST API for organizations, tenants, workspaces, clusters, applications, and API lifecycle management. Base URL: `https://tsbhost:8443/v2`. Supports Basic Auth and JWT via `x-tetrate-token`.
 
-**Human URL:** [https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/](https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/)
+**Tags:** Management Plane, Multi-Cluster, REST, Service Mesh
 
+**Properties:**
+- [Documentation](https://docs.tetrate.io/service-bridge/reference/rest-api/guide)
+- [OpenAPI](openapi/tetrate-service-bridge-openapi.yml)
+- [JSON Schema](json-schema/tsb-resource-schema.json)
+- [JSON Structure](json-structure/tsb-resource-structure.json)
 
-#### Tags:
+### [Tetrate Service Bridge Platform API](https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/)
+Programmatic management of organizations, tenants, workspaces, and cluster onboarding.
 
- - Service Mesh, Management Plane, Multi-Cluster, REST
+### [Tetrate Service Bridge Gateway API](https://docs.tetrate.io/service-bridge/latest/refs/tsb/gateway/v2/)
+Ingress and egress gateway group configuration for multi-cluster service mesh environments.
 
-#### Properties
+### [Tetrate Service Bridge Traffic API](https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/)
+Traffic routing, load balancing, failover, retries, and service-to-service routing rules.
 
-- [Documentation](https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/)
-- [Reference](https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/)
+### [Tetrate Service Bridge Security API](https://docs.tetrate.io/service-bridge/latest/refs/tsb/security/v2/)
+mTLS, authorization policies, and access control between workloads across the mesh.
 
-### Tetrate Service Bridge Gateway API
-The TSB Gateway API manages ingress and egress gateway configuration for services in a Tetrate Service Bridge environment. It provides resources for defining gateway groups, IngressGateway, EgressGateway, and Tier1Gateway objects that control traffic entering and leaving the mesh across clusters.
+### [Tetrate Service Bridge Observability API](https://docs.tetrate.io/service-bridge/latest/refs/)
+Service metrics, traffic telemetry, and distributed tracing across mesh clusters.
 
-**Human URL:** [https://docs.tetrate.io/service-bridge/latest/refs/tsb/gateway/v2/](https://docs.tetrate.io/service-bridge/latest/refs/tsb/gateway/v2/)
+## Artifacts
 
+### OpenAPI Specifications
 
-#### Tags:
+- [openapi/tetrate-service-bridge-openapi.yml](openapi/tetrate-service-bridge-openapi.yml) — TSB REST management plane API
 
- - Gateway, Ingress, Egress, Traffic Management
+### Spectral Rules
 
-#### Properties
+- [rules/tetrate-service-bridge-rules.yml](rules/tetrate-service-bridge-rules.yml) — Spectral ruleset enforcing TSB API conventions
 
-- [Documentation](https://docs.tetrate.io/service-bridge/latest/refs/tsb/gateway/v2/)
-- [Reference](https://docs.tetrate.io/service-bridge/latest/refs/tsb/gateway/v2/)
+### Naftiko Capabilities
 
-### Tetrate Service Bridge Traffic API
-The TSB Traffic API provides configuration resources for managing service-to-service traffic within a Tetrate Service Bridge workspace. It supports traffic groups, TrafficSetting, and ServiceRoute objects that control load balancing, failover, retries, and routing rules for workloads in the mesh.
+**Shared Definitions:**
+- [capabilities/shared/tetrate-service-bridge.yaml](capabilities/shared/tetrate-service-bridge.yaml) — TSB management plane consumed API
 
-**Human URL:** [https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/](https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/)
+**Workflow Capabilities:**
+- [capabilities/service-mesh-management.yaml](capabilities/service-mesh-management.yaml) — Unified service mesh management for platform engineers (12 MCP tools, REST on :8080)
 
+### JSON Schema
 
-#### Tags:
+- [json-schema/tsb-resource-schema.json](json-schema/tsb-resource-schema.json) — Base schema for TSB resources (Organization, Tenant, Workspace, Cluster, Application, API)
 
- - Traffic Management, Load Balancing, Routing, Service Mesh
+### JSON Structure
 
-#### Properties
+- [json-structure/tsb-resource-structure.json](json-structure/tsb-resource-structure.json) — TSB resource hierarchy documentation
 
-- [Documentation](https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/)
-- [Reference](https://docs.tetrate.io/service-bridge/latest/refs/tsb/traffic/v2/)
+### JSON-LD Context
 
-### Tetrate Service Bridge Security API
-The TSB Security API provides configuration resources for enforcing security policies in a Tetrate Service Bridge environment. It includes security groups, SecuritySetting, and ServiceSecuritySetting objects for controlling mutual TLS, authorization policies, and access control between workloads across the mesh.
+- [json-ld/tetrate-context.jsonld](json-ld/tetrate-context.jsonld) — Linked data context mapping TSB vocabulary to schema.org
 
-**Human URL:** [https://docs.tetrate.io/service-bridge/latest/refs/tsb/security/v2/](https://docs.tetrate.io/service-bridge/latest/refs/tsb/security/v2/)
+### Vocabulary
 
+- [vocabulary/tetrate-vocabulary.yml](vocabulary/tetrate-vocabulary.yml) — TSB domain vocabulary (19 terms covering resource hierarchy, mesh configuration, operational semantics)
 
-#### Tags:
+### Examples
 
- - Security, mTLS, Authorization, Service Mesh
-
-#### Properties
-
-- [Documentation](https://docs.tetrate.io/service-bridge/latest/refs/tsb/security/v2/)
-- [Reference](https://docs.tetrate.io/service-bridge/latest/refs/tsb/security/v2/)
-
-### Tetrate Service Bridge Observability API
-The TSB Observability API exposes metrics, topology, and service observability data for workloads managed by Tetrate Service Bridge. It provides access to service-level metrics, traffic telemetry, and distributed tracing information collected across mesh clusters, enabling monitoring and troubleshooting of distributed applications.
-
-**Human URL:** [https://docs.tetrate.io/service-bridge/latest/refs/](https://docs.tetrate.io/service-bridge/latest/refs/)
-
-
-#### Tags:
-
- - Observability, Metrics, Tracing, Telemetry
-
-#### Properties
-
-- [Documentation](https://docs.tetrate.io/service-bridge/latest/refs/)
+- [examples/tetrate-service-bridge-list-tenants-example.json](examples/tetrate-service-bridge-list-tenants-example.json)
+- [examples/tetrate-service-bridge-create-workspace-example.json](examples/tetrate-service-bridge-create-workspace-example.json)
+- [examples/tetrate-service-bridge-create-api-example.json](examples/tetrate-service-bridge-create-api-example.json)
 
 ## Common Properties
 
@@ -101,7 +81,6 @@ The TSB Observability API exposes metrics, topology, and service observability d
 - [Getting Started](https://docs.tetrate.io/service-bridge/latest/quickstart/)
 - [Blog](https://tetrate.io/blog/)
 - [GitHub Organization](https://github.com/tetrateio)
-- [GitHubRepository](https://github.com/tetrateio/tetrate)
 - [Change Log](https://docs.tetrate.io/service-bridge/latest/release-notes/)
 - [Support](https://tetrate.io/contact/)
 - [Pricing](https://tetrate.io/tetrate-service-bridge/)
@@ -110,5 +89,4 @@ The TSB Observability API exposes metrics, topology, and service observability d
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

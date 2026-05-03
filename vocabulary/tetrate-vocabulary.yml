@@ -1,0 +1,212 @@
+vocabulary:
+  name: Tetrate Service Bridge Vocabulary
+  description: >-
+    Domain vocabulary for Tetrate Service Bridge (TSB), covering the resource
+    hierarchy, mesh configuration concepts, and operational terminology for
+    multi-cluster service mesh management.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+terms:
+  - term: Organization
+    definition: >-
+      The top-level TSB entity representing a corporation or enterprise.
+      Organizations contain tenants, clusters, users, and RBAC roles.
+    domain: Resource Hierarchy
+    tags:
+      - Core
+      - Resource
+
+  - term: Tenant
+    definition: >-
+      A group within an organization, representing a team or department.
+      Tenants partition resources and access using TSB's RBAC model.
+      Each tenant contains workspaces and applications.
+    domain: Resource Hierarchy
+    tags:
+      - Core
+      - Resource
+
+  - term: Workspace
+    definition: >-
+      A strictly partitioned zone owned by a tenant. Workspaces exclusively
+      own specific Kubernetes namespaces across clusters and contain gateway
+      groups, traffic groups, and security groups.
+    domain: Resource Hierarchy
+    tags:
+      - Core
+      - Resource
+
+  - term: Cluster
+    definition: >-
+      A Kubernetes cluster onboarded to TSB management. Clusters host
+      Istio sidecars managed by TSB and participate in the global service mesh.
+    domain: Infrastructure
+    tags:
+      - Infrastructure
+      - Kubernetes
+
+  - term: Application
+    definition: >-
+      A logical grouping of related microservices and APIs within a tenant.
+      Applications can expose APIs via gateway configuration generated from
+      OpenAPI v3 specifications.
+    domain: Application Management
+    tags:
+      - Application
+      - Resource
+
+  - term: API
+    definition: >-
+      An API definition attached to an application. The API spec is based on
+      OpenAPI v3 format and TSB uses it to automatically generate Istio
+      gateway configuration for traffic routing.
+    domain: Application Management
+    tags:
+      - API
+      - OpenAPI
+
+  - term: Gateway Group
+    definition: >-
+      A group within a workspace managing IngressGateway, EgressGateway, and
+      Tier1Gateway Istio resources. Controls traffic entering and leaving
+      the mesh.
+    domain: Traffic Management
+    tags:
+      - Gateway
+      - Traffic Management
+
+  - term: Traffic Group
+    definition: >-
+      A workspace group managing TrafficSetting and ServiceRoute objects
+      for service-to-service traffic control including load balancing,
+      failover, retries, and routing rules.
+    domain: Traffic Management
+    tags:
+      - Traffic Management
+      - Routing
+
+  - term: Security Group
+    definition: >-
+      A workspace group managing SecuritySetting and ServiceSecuritySetting
+      objects that enforce mTLS, authorization policies, and access control
+      between workloads.
+    domain: Security
+    tags:
+      - Security
+      - mTLS
+
+  - term: FQN
+    definition: >-
+      Fully-Qualified Name. A hierarchical path identifying a TSB resource
+      uniquely within the management plane. Format:
+      organizations/{org}/tenants/{tenant}/workspaces/{ws}
+    domain: Resource Identification
+    tags:
+      - Identification
+      - Core
+
+  - term: Etag
+    definition: >-
+      A version tag returned with every TSB resource GET response. Must be
+      included in PUT requests to prevent concurrent modification conflicts.
+    domain: API Semantics
+    tags:
+      - Concurrency
+      - API Semantics
+
+  - term: Namespace Selector
+    definition: >-
+      A TSB configuration object that assigns Kubernetes namespaces to a
+      workspace. Uses cluster/namespace format to reference specific namespaces
+      across multiple clusters.
+    domain: Configuration
+    tags:
+      - Kubernetes
+      - Configuration
+
+  - term: Tier-1 Gateway
+    definition: >-
+      A dedicated gateway cluster that acts as the front-tier entry point
+      for traffic before it reaches application-tier clusters. Used in
+      multi-cluster routing topologies.
+    domain: Infrastructure
+    tags:
+      - Gateway
+      - Infrastructure
+
+  - term: Bridged Mode
+    definition: >-
+      A workspace group configuration mode where TSB translates high-level
+      TSB configuration objects into Istio resources automatically.
+    domain: Configuration
+    tags:
+      - Configuration
+      - Istio
+
+  - term: Direct Mode
+    definition: >-
+      A workspace group configuration mode where operators write native
+      Istio resources directly, bypassing TSB's translation layer.
+    domain: Configuration
+    tags:
+      - Configuration
+      - Istio
+
+  - term: Dry Run
+    definition: >-
+      A TSB API feature activated via the x-tetrate-dry-run: server-side
+      request header. Simulates POST, PUT, or DELETE operations without
+      applying changes, useful for validation.
+    domain: API Semantics
+    tags:
+      - API Semantics
+      - Validation
+
+  - term: Istio
+    definition: >-
+      The open-source service mesh that TSB is built on. TSB manages Istio
+      deployments across multiple clusters through its management plane.
+    domain: Technology
+    tags:
+      - Istio
+      - Service Mesh
+
+  - term: Envoy Proxy
+    definition: >-
+      The data plane proxy used by Istio and managed by TSB. Handles actual
+      traffic routing, mTLS, observability, and policy enforcement.
+    domain: Technology
+    tags:
+      - Envoy
+      - Data Plane
+
+  - term: mTLS
+    definition: >-
+      Mutual TLS. A two-way TLS authentication mechanism enforced by TSB
+      between workloads in the mesh for encrypted, authenticated communication.
+    domain: Security
+    tags:
+      - Security
+      - Encryption
+
+  - term: RBAC
+    definition: >-
+      Role-Based Access Control. TSB's permission model where roles define
+      allowed operations on resource types and role bindings assign roles
+      to users or service accounts.
+    domain: Security
+    tags:
+      - Security
+      - Access Control
+
+  - term: Management Plane
+    definition: >-
+      The central control component of TSB that provides the REST API,
+      configuration store, and coordination across all onboarded clusters.
+      Deployed as tsbhost on port 8443 by default.
+    domain: Architecture
+    tags:
+      - Architecture
+      - Core

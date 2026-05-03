@@ -1,0 +1,130 @@
+{
+  "title": "TSB Resource Hierarchy Structure",
+  "description": "Documents the Tetrate Service Bridge resource hierarchy and nesting relationships.",
+  "version": "2.0",
+  "structure": {
+    "organization": {
+      "description": "Top-level TSB entity. Represents a corporation or enterprise.",
+      "fields": {
+        "name": "string — unique name within TSB",
+        "fqn": "string — fully-qualified name path",
+        "displayName": "string — human-readable label",
+        "description": "string — purpose description",
+        "etag": "string — optimistic concurrency tag",
+        "labels": "map<string,string> — categorization labels",
+        "annotations": "map<string,string> — arbitrary metadata",
+        "spec.deletionProtectionEnabled": "boolean — guards against accidental deletion"
+      },
+      "children": {
+        "tenant": {
+          "description": "A team or department within the organization.",
+          "fields": {
+            "name": "string",
+            "fqn": "string",
+            "displayName": "string",
+            "description": "string",
+            "etag": "string",
+            "spec.deletionProtectionEnabled": "boolean"
+          },
+          "children": {
+            "workspace": {
+              "description": "Strictly partitioned zone for namespace ownership.",
+              "fields": {
+                "name": "string",
+                "fqn": "string",
+                "displayName": "string",
+                "description": "string",
+                "etag": "string",
+                "spec.namespaceSelector.names": "array<string> — cluster/namespace selectors"
+              },
+              "children": {
+                "gatewaygroup": {
+                  "description": "Groups gateway resources (IngressGateway, EgressGateway, Tier1Gateway).",
+                  "fields": {
+                    "name": "string",
+                    "spec.namespaceSelector": "object",
+                    "spec.configMode": "enum: BRIDGED | DIRECT"
+                  }
+                },
+                "trafficgroup": {
+                  "description": "Groups traffic settings and service routes.",
+                  "fields": {
+                    "name": "string",
+                    "spec.namespaceSelector": "object",
+                    "spec.configMode": "enum: BRIDGED | DIRECT"
+                  }
+                },
+                "securitygroup": {
+                  "description": "Groups security settings and authorization policies.",
+                  "fields": {
+                    "name": "string",
+                    "spec.namespaceSelector": "object",
+                    "spec.configMode": "enum: BRIDGED | DIRECT"
+                  }
+                }
+              }
+            },
+            "application": {
+              "description": "An application grouping APIs and gateway configuration.",
+              "fields": {
+                "name": "string",
+                "fqn": "string",
+                "displayName": "string",
+                "description": "string",
+                "etag": "string",
+                "spec.workspace": "string — workspace FQN"
+              },
+              "children": {
+                "api": {
+                  "description": "An API definition with OpenAPI v3 spec.",
+                  "fields": {
+                    "name": "string",
+                    "fqn": "string",
+                    "etag": "string",
+                    "spec.openapi": "string — raw OpenAPI v3 spec",
+                    "spec.workloadSelector": "object — gateway workload selector",
+                    "spec.httpServers": "array — generated gateway server configs (output-only)",
+                    "spec.endpoints": "array — HTTP endpoint objects (output-only)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "cluster": {
+          "description": "An onboarded Kubernetes cluster.",
+          "fields": {
+            "name": "string",
+            "fqn": "string",
+            "displayName": "string",
+            "description": "string",
+            "etag": "string",
+            "spec.network": "string — network mesh identifier",
+            "spec.tier1Cluster": "boolean — Tier-1 gateway role",
+            "spec.tokenTtl": "string — service account token TTL"
+          }
+        },
+        "user": {
+          "description": "A TSB user with RBAC bindings.",
+          "fields": {
+            "name": "string",
+            "email": "string",
+            "displayName": "string",
+            "fqn": "string"
+          }
+        },
+        "role": {
+          "description": "A custom RBAC role defining resource/verb permissions.",
+          "fields": {
+            "name": "string",
+            "fqn": "string",
+            "displayName": "string",
+            "description": "string",
+            "rules[].resources": "array<string> — resource types this role applies to",
+            "rules[].verbs": "array<string> — allowed verbs (read, write, etc.)"
+          }
+        }
+      }
+    }
+  }
+}

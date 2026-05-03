@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/tetrate/blob/main/json-schema/tsb-resource-schema.json",
+  "title": "TSB Resource",
+  "description": "Base schema for Tetrate Service Bridge managed resources including organizations, tenants, workspaces, clusters, applications, and APIs.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Resource name. Must be 1-63 characters, lowercase alphanumeric with hyphens.",
+      "pattern": "^[a-z][a-z0-9-]{0,61}[a-z0-9]$"
+    },
+    "fqn": {
+      "type": "string",
+      "description": "Fully-qualified name of the resource in the TSB resource hierarchy. e.g. organizations/myorg/tenants/myteam"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable display name for the resource."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the resource purpose."
+    },
+    "etag": {
+      "type": "string",
+      "description": "Version tag for optimistic concurrency. Must be included in PUT requests."
+    },
+    "labels": {
+      "type": "object",
+      "description": "Key-value labels for resource categorization.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Key-value annotations for arbitrary metadata.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["name"],
+  "definitions": {
+    "Organization": {
+      "title": "Organization",
+      "description": "A TSB organization representing a corporation or enterprise entity.",
+      "allOf": [{ "$ref": "#" }],
+      "properties": {
+        "spec": {
+          "type": "object",
+          "description": "Organization specification.",
+          "properties": {
+            "displayName": { "type": "string" },
+            "description": { "type": "string" },
+            "deletionProtectionEnabled": {
+              "type": "boolean",
+              "description": "Prevents accidental deletion of the organization."
+            }
+          }
+        }
+      }
+    },
+    "Tenant": {
+      "title": "Tenant",
+      "description": "A TSB tenant representing a team or department within an organization.",
+      "allOf": [{ "$ref": "#" }],
+      "properties": {
+        "spec": {
+          "type": "object",
+          "description": "Tenant specification.",
+          "properties": {
+            "displayName": { "type": "string" },
+            "description": { "type": "string" },
+            "deletionProtectionEnabled": {
+              "type": "boolean",
+              "description": "Prevents accidental deletion of the tenant."
+            }
+          }
+        }
+      }
+    },
+    "Workspace": {
+      "title": "Workspace",
+      "description": "A TSB workspace providing namespace isolation for microservice teams.",
+      "allOf": [{ "$ref": "#" }],
+      "properties": {
+        "spec": {
+          "type": "object",
+          "description": "Workspace specification.",
+          "properties": {
+            "displayName": { "type": "string" },
+            "description": { "type": "string" },
+            "namespaceSelector": {
+              "type": "object",
+              "description": "Selects Kubernetes namespaces assigned to this workspace.",
+              "properties": {
+                "names": {
+                  "type": "array",
+                  "description": "List of namespace selectors in cluster/namespace format.",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Cluster": {
+      "title": "Cluster",
+      "description": "A Kubernetes cluster onboarded to TSB management.",
+      "allOf": [{ "$ref": "#" }],
+      "properties": {
+        "spec": {
+          "type": "object",
+          "description": "Cluster specification.",
+          "properties": {
+            "network": {
+              "type": "string",
+              "description": "Network identifier for multi-network mesh deployments."
+            },
+            "tier1Cluster": {
+              "type": "boolean",
+              "description": "If true, this cluster acts as a Tier-1 gateway cluster."
+            },
+            "tokenTtl": {
+              "type": "string",
+              "description": "TTL for cluster service account tokens."
+            }
+          }
+        }
+      }
+    },
+    "Application": {
+      "title": "Application",
+      "description": "A TSB application grouping related APIs and gateway configuration.",
+      "allOf": [{ "$ref": "#" }],
+      "properties": {
+        "spec": {
+          "type": "object",
+          "description": "Application specification.",
+          "properties": {
+            "displayName": { "type": "string" },
+            "description": { "type": "string" },
+            "workspace": {
+              "type": "string",
+              "description": "FQN of the workspace hosting this application."
+            }
+          }
+        }
+      }
+    },
+    "API": {
+      "title": "API",
+      "description": "A TSB API definition attaching an OpenAPI v3 spec to an application.",
+      "allOf": [{ "$ref": "#" }],
+      "properties": {
+        "spec": {
+          "type": "object",
+          "description": "API specification.",
+          "properties": {
+            "openapi": {
+              "type": "string",
+              "description": "Raw OpenAPI v3 spec in YAML or JSON format."
+            },
+            "workloadSelector": {
+              "type": "object",
+              "description": "Selects the gateway workload to route traffic to."
+            }
+          }
+        }
+      }
+    }
+  }
+}

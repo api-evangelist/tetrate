@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@vocab": "https://schema.tetrate.io/v2/",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Organization": "schema:Organization",
+    "name": "schema:name",
+    "description": "schema:description",
+    "displayName": "schema:name",
+    "fqn": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "etag": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "labels": "schema:additionalProperty",
+    "annotations": "schema:additionalProperty",
+
+    "Tenant": "schema:Organization",
+    "Workspace": {
+      "@id": "https://schema.tetrate.io/v2/Workspace",
+      "@type": "schema:Place"
+    },
+    "namespaceSelector": {
+      "@id": "https://schema.tetrate.io/v2/namespaceSelector",
+      "@type": "@id"
+    },
+
+    "Cluster": {
+      "@id": "https://schema.tetrate.io/v2/Cluster",
+      "@type": "schema:SoftwareApplication"
+    },
+    "network": "https://schema.tetrate.io/v2/network",
+    "tier1Cluster": {
+      "@id": "https://schema.tetrate.io/v2/tier1Cluster",
+      "@type": "xsd:boolean"
+    },
+
+    "Application": "schema:SoftwareApplication",
+    "workspace": {
+      "@id": "https://schema.tetrate.io/v2/workspace",
+      "@type": "@id"
+    },
+
+    "API": {
+      "@id": "https://schema.tetrate.io/v2/API",
+      "@type": "schema:WebAPI"
+    },
+    "openapi": {
+      "@id": "schema:encodingFormat",
+      "@type": "xsd:string"
+    },
+    "endpoints": {
+      "@id": "schema:serviceUrl",
+      "@type": "@id"
+    },
+
+    "GatewayGroup": "https://schema.tetrate.io/v2/GatewayGroup",
+    "TrafficGroup": "https://schema.tetrate.io/v2/TrafficGroup",
+    "SecurityGroup": "https://schema.tetrate.io/v2/SecurityGroup",
+    "configMode": "https://schema.tetrate.io/v2/configMode",
+
+    "Role": "schema:Role",
+    "rules": "schema:permissions",
+
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}
