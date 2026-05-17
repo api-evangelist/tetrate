@@ -151,15 +151,15 @@ common:
     url: https://tetrate.io/
   - type: Documentation
     url: https://docs.tetrate.io/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.tetrate.io/service-bridge/latest/quickstart/
   - type: Blog
     url: https://tetrate.io/blog/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/tetrateio
   - type: GitHubRepository
     url: https://github.com/tetrateio/tetrate
-  - type: Change Log
+  - type: ChangeLog
     url: https://docs.tetrate.io/service-bridge/latest/release-notes/
   - type: Support
     url: https://tetrate.io/contact/
@@ -173,7 +173,7 @@ common:
     url: json-schema/tsb-resource-schema.json
   - type: JSONStructure
     url: json-structure/tsb-resource-structure.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/tetrate-context.jsonld
   - type: Vocabulary
     url: vocabulary/tetrate-vocabulary.yml
