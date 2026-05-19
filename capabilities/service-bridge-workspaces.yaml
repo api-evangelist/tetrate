@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tetrate Service Bridge REST API — Workspaces
+  description: 'Tetrate Service Bridge REST API — Workspaces. 5 operations. Lead operation: List Workspaces. Self-contained
+    Naftiko capability covering one Tetrate business surface.'
+  tags:
+  - Tetrate
+  - Workspaces
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TETRATE_API_KEY: TETRATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-bridge-workspaces
+    baseUri: https://{tsb-host}:8443/v2
+    description: Tetrate Service Bridge REST API — Workspaces business capability. Self-contained, no shared references.
+    resources:
+    - name: organizations-organization-tenants-tenant-workspaces
+      path: /organizations/{organization}/tenants/{tenant}/workspaces
+      operations:
+      - name: listworkspaces
+        method: GET
+        description: List Workspaces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createworkspace
+        method: POST
+        description: Create Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organizations-organization-tenants-tenant-workspaces-workspace
+      path: /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}
+      operations:
+      - name: getworkspace
+        method: GET
+        description: Get Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateworkspace
+        method: PUT
+        description: Update Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworkspace
+        method: DELETE
+        description: Delete Workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: x-tetrate-token
+      value: '{{env.TETRATE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: service-bridge-workspaces-rest
+    port: 8080
+    description: REST adapter for Tetrate Service Bridge REST API — Workspaces. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organization}/tenants/{tenant}/workspaces
+      name: organizations-organization-tenants-tenant-workspaces
+      description: REST surface for organizations-organization-tenants-tenant-workspaces.
+      operations:
+      - method: GET
+        name: listworkspaces
+        description: List Workspaces
+        call: service-bridge-workspaces.listworkspaces
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createworkspace
+        description: Create Workspace
+        call: service-bridge-workspaces.createworkspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}
+      name: organizations-organization-tenants-tenant-workspaces-workspace
+      description: REST surface for organizations-organization-tenants-tenant-workspaces-workspace.
+      operations:
+      - method: GET
+        name: getworkspace
+        description: Get Workspace
+        call: service-bridge-workspaces.getworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateworkspace
+        description: Update Workspace
+        call: service-bridge-workspaces.updateworkspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkspace
+        description: Delete Workspace
+        call: service-bridge-workspaces.deleteworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-bridge-workspaces-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tetrate Service Bridge REST API — Workspaces. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-workspaces
+      description: List Workspaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-workspaces.listworkspaces
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-workspace
+      description: Create Workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-bridge-workspaces.createworkspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workspace
+      description: Get Workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-workspaces.getworkspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-workspace
+      description: Update Workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: service-bridge-workspaces.updateworkspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-workspace
+      description: Delete Workspace
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: service-bridge-workspaces.deleteworkspace
+      outputParameters:
+      - type: object
+        mapping: $.

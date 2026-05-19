@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tetrate Service Bridge REST API — Gateway Groups
+  description: 'Tetrate Service Bridge REST API — Gateway Groups. 2 operations. Lead operation: List Gateway Groups. Self-contained
+    Naftiko capability covering one Tetrate business surface.'
+  tags:
+  - Tetrate
+  - Gateway Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TETRATE_API_KEY: TETRATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-bridge-gateway-groups
+    baseUri: https://{tsb-host}:8443/v2
+    description: Tetrate Service Bridge REST API — Gateway Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: organizations-organization-tenants-tenant-workspaces-workspace-gatewaygroups
+      path: /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/gatewaygroups
+      operations:
+      - name: listgatewaygroups
+        method: GET
+        description: List Gateway Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategatewaygroup
+        method: POST
+        description: Create Gateway Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: x-tetrate-token
+      value: '{{env.TETRATE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: service-bridge-gateway-groups-rest
+    port: 8080
+    description: REST adapter for Tetrate Service Bridge REST API — Gateway Groups. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/gatewaygroups
+      name: organizations-organization-tenants-tenant-workspaces-workspace-gatewaygroups
+      description: REST surface for organizations-organization-tenants-tenant-workspaces-workspace-gatewaygroups.
+      operations:
+      - method: GET
+        name: listgatewaygroups
+        description: List Gateway Groups
+        call: service-bridge-gateway-groups.listgatewaygroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategatewaygroup
+        description: Create Gateway Group
+        call: service-bridge-gateway-groups.creategatewaygroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-bridge-gateway-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tetrate Service Bridge REST API — Gateway Groups. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-gateway-groups
+      description: List Gateway Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-gateway-groups.listgatewaygroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-gateway-group
+      description: Create Gateway Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-bridge-gateway-groups.creategatewaygroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

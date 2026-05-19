@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tetrate Service Bridge REST API — Clusters
+  description: 'Tetrate Service Bridge REST API — Clusters. 5 operations. Lead operation: List Clusters. Self-contained Naftiko
+    capability covering one Tetrate business surface.'
+  tags:
+  - Tetrate
+  - Clusters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TETRATE_API_KEY: TETRATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-bridge-clusters
+    baseUri: https://{tsb-host}:8443/v2
+    description: Tetrate Service Bridge REST API — Clusters business capability. Self-contained, no shared references.
+    resources:
+    - name: organizations-organization-clusters
+      path: /organizations/{organization}/clusters
+      operations:
+      - name: listclusters
+        method: GET
+        description: List Clusters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcluster
+        method: POST
+        description: Create Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organizations-organization-clusters-cluster
+      path: /organizations/{organization}/clusters/{cluster}
+      operations:
+      - name: getcluster
+        method: GET
+        description: Get Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecluster
+        method: PUT
+        description: Update Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecluster
+        method: DELETE
+        description: Delete Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: x-tetrate-token
+      value: '{{env.TETRATE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: service-bridge-clusters-rest
+    port: 8080
+    description: REST adapter for Tetrate Service Bridge REST API — Clusters. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organization}/clusters
+      name: organizations-organization-clusters
+      description: REST surface for organizations-organization-clusters.
+      operations:
+      - method: GET
+        name: listclusters
+        description: List Clusters
+        call: service-bridge-clusters.listclusters
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcluster
+        description: Create Cluster
+        call: service-bridge-clusters.createcluster
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organizations/{organization}/clusters/{cluster}
+      name: organizations-organization-clusters-cluster
+      description: REST surface for organizations-organization-clusters-cluster.
+      operations:
+      - method: GET
+        name: getcluster
+        description: Get Cluster
+        call: service-bridge-clusters.getcluster
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecluster
+        description: Update Cluster
+        call: service-bridge-clusters.updatecluster
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecluster
+        description: Delete Cluster
+        call: service-bridge-clusters.deletecluster
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-bridge-clusters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tetrate Service Bridge REST API — Clusters. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-clusters
+      description: List Clusters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-clusters.listclusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-cluster
+      description: Create Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-bridge-clusters.createcluster
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cluster
+      description: Get Cluster
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-clusters.getcluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-cluster
+      description: Update Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: service-bridge-clusters.updatecluster
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-cluster
+      description: Delete Cluster
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: service-bridge-clusters.deletecluster
+      outputParameters:
+      - type: object
+        mapping: $.

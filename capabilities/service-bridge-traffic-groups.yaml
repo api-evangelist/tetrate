@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tetrate Service Bridge REST API — Traffic Groups
+  description: 'Tetrate Service Bridge REST API — Traffic Groups. 2 operations. Lead operation: List Traffic Groups. Self-contained
+    Naftiko capability covering one Tetrate business surface.'
+  tags:
+  - Tetrate
+  - Traffic Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TETRATE_API_KEY: TETRATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-bridge-traffic-groups
+    baseUri: https://{tsb-host}:8443/v2
+    description: Tetrate Service Bridge REST API — Traffic Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: organizations-organization-tenants-tenant-workspaces-workspace-trafficgroups
+      path: /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/trafficgroups
+      operations:
+      - name: listtrafficgroups
+        method: GET
+        description: List Traffic Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtrafficgroup
+        method: POST
+        description: Create Traffic Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: x-tetrate-token
+      value: '{{env.TETRATE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: service-bridge-traffic-groups-rest
+    port: 8080
+    description: REST adapter for Tetrate Service Bridge REST API — Traffic Groups. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/trafficgroups
+      name: organizations-organization-tenants-tenant-workspaces-workspace-trafficgroups
+      description: REST surface for organizations-organization-tenants-tenant-workspaces-workspace-trafficgroups.
+      operations:
+      - method: GET
+        name: listtrafficgroups
+        description: List Traffic Groups
+        call: service-bridge-traffic-groups.listtrafficgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtrafficgroup
+        description: Create Traffic Group
+        call: service-bridge-traffic-groups.createtrafficgroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-bridge-traffic-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tetrate Service Bridge REST API — Traffic Groups. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-traffic-groups
+      description: List Traffic Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-traffic-groups.listtrafficgroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-traffic-group
+      description: Create Traffic Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-bridge-traffic-groups.createtrafficgroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

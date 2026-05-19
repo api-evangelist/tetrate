@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tetrate Service Bridge REST API — RBAC
+  description: 'Tetrate Service Bridge REST API — RBAC. 3 operations. Lead operation: List Roles. Self-contained Naftiko capability
+    covering one Tetrate business surface.'
+  tags:
+  - Tetrate
+  - RBAC
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TETRATE_API_KEY: TETRATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-bridge-rbac
+    baseUri: https://{tsb-host}:8443/v2
+    description: Tetrate Service Bridge REST API — RBAC business capability. Self-contained, no shared references.
+    resources:
+    - name: organizations-organization-roles
+      path: /organizations/{organization}/roles
+      operations:
+      - name: listroles
+        method: GET
+        description: List Roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrole
+        method: POST
+        description: Create Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organizations-organization-users
+      path: /organizations/{organization}/users
+      operations:
+      - name: listusers
+        method: GET
+        description: List Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: x-tetrate-token
+      value: '{{env.TETRATE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: service-bridge-rbac-rest
+    port: 8080
+    description: REST adapter for Tetrate Service Bridge REST API — RBAC. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organization}/roles
+      name: organizations-organization-roles
+      description: REST surface for organizations-organization-roles.
+      operations:
+      - method: GET
+        name: listroles
+        description: List Roles
+        call: service-bridge-rbac.listroles
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrole
+        description: Create Role
+        call: service-bridge-rbac.createrole
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organizations/{organization}/users
+      name: organizations-organization-users
+      description: REST surface for organizations-organization-users.
+      operations:
+      - method: GET
+        name: listusers
+        description: List Users
+        call: service-bridge-rbac.listusers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-bridge-rbac-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tetrate Service Bridge REST API — RBAC. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-roles
+      description: List Roles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-rbac.listroles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-role
+      description: Create Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-bridge-rbac.createrole
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-users
+      description: List Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-bridge-rbac.listusers
+      outputParameters:
+      - type: object
+        mapping: $.
