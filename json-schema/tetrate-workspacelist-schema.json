@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkspaceList",
+  "title": "WorkspaceList",
+  "type": "object",
+  "properties": {
+    "workspaces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Workspace"
+      }
+    }
+  }
+}

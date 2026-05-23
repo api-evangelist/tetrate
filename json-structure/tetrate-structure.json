@@ -1,0 +1,513 @@
+{
+  "provider": "Tetrate",
+  "providerId": "tetrate",
+  "kind": "json-structure",
+  "description": "Structural overview of the Tetrate API surface; extracted from openapi/.",
+  "schemaCount": 25,
+  "operationCount": 39,
+  "schemas": [
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ResourceMeta",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Organization",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "OrganizationList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Tenant",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "TenantList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Workspace",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "WorkspaceList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Cluster",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ClusterList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Application",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ApplicationList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "API",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "APIList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "HTTPEndpoint",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "GatewayGroup",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "GatewayGroupList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "TrafficGroup",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "TrafficGroupList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SecurityGroup",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SecurityGroupList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "UserList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Role",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RoleList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/organizations",
+      "operationId": "listOrganizations",
+      "summary": "List Organizations",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations",
+      "operationId": "createOrganization",
+      "summary": "Create Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}",
+      "operationId": "getOrganization",
+      "summary": "Get Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization}",
+      "operationId": "updateOrganization",
+      "summary": "Update Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organization}",
+      "operationId": "deleteOrganization",
+      "summary": "Delete Organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants",
+      "operationId": "listTenants",
+      "summary": "List Tenants",
+      "tags": [
+        "Tenants"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants",
+      "operationId": "createTenant",
+      "summary": "Create Tenant",
+      "tags": [
+        "Tenants"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}",
+      "operationId": "getTenant",
+      "summary": "Get Tenant",
+      "tags": [
+        "Tenants"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization}/tenants/{tenant}",
+      "operationId": "updateTenant",
+      "summary": "Update Tenant",
+      "tags": [
+        "Tenants"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organization}/tenants/{tenant}",
+      "operationId": "deleteTenant",
+      "summary": "Delete Tenant",
+      "tags": [
+        "Tenants"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces",
+      "operationId": "listWorkspaces",
+      "summary": "List Workspaces",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces",
+      "operationId": "createWorkspace",
+      "summary": "Create Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}",
+      "operationId": "getWorkspace",
+      "summary": "Get Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}",
+      "operationId": "updateWorkspace",
+      "summary": "Update Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}",
+      "operationId": "deleteWorkspace",
+      "summary": "Delete Workspace",
+      "tags": [
+        "Workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/clusters",
+      "operationId": "listClusters",
+      "summary": "List Clusters",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/clusters",
+      "operationId": "createCluster",
+      "summary": "Create Cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/clusters/{cluster}",
+      "operationId": "getCluster",
+      "summary": "Get Cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization}/clusters/{cluster}",
+      "operationId": "updateCluster",
+      "summary": "Update Cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organization}/clusters/{cluster}",
+      "operationId": "deleteCluster",
+      "summary": "Delete Cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications",
+      "operationId": "listApplications",
+      "summary": "List Applications",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications",
+      "operationId": "createApplication",
+      "summary": "Create Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}",
+      "operationId": "getApplication",
+      "summary": "Get Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}",
+      "operationId": "updateApplication",
+      "summary": "Update Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}",
+      "operationId": "deleteApplication",
+      "summary": "Delete Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}/apis",
+      "operationId": "listAPIs",
+      "summary": "List APIs",
+      "tags": [
+        "APIs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}/apis",
+      "operationId": "createAPI",
+      "summary": "Create API",
+      "tags": [
+        "APIs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}/apis/{api}",
+      "operationId": "getAPI",
+      "summary": "Get API",
+      "tags": [
+        "APIs"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}/apis/{api}",
+      "operationId": "updateAPI",
+      "summary": "Update API",
+      "tags": [
+        "APIs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organization}/tenants/{tenant}/applications/{application}/apis/{api}",
+      "operationId": "deleteAPI",
+      "summary": "Delete API",
+      "tags": [
+        "APIs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/gatewaygroups",
+      "operationId": "listGatewayGroups",
+      "summary": "List Gateway Groups",
+      "tags": [
+        "Gateway Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/gatewaygroups",
+      "operationId": "createGatewayGroup",
+      "summary": "Create Gateway Group",
+      "tags": [
+        "Gateway Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/trafficgroups",
+      "operationId": "listTrafficGroups",
+      "summary": "List Traffic Groups",
+      "tags": [
+        "Traffic Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/trafficgroups",
+      "operationId": "createTrafficGroup",
+      "summary": "Create Traffic Group",
+      "tags": [
+        "Traffic Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/securitygroups",
+      "operationId": "listSecurityGroups",
+      "summary": "List Security Groups",
+      "tags": [
+        "Security Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/securitygroups",
+      "operationId": "createSecurityGroup",
+      "summary": "Create Security Group",
+      "tags": [
+        "Security Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/users",
+      "operationId": "listUsers",
+      "summary": "List Users",
+      "tags": [
+        "RBAC"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organization}/roles",
+      "operationId": "listRoles",
+      "summary": "List Roles",
+      "tags": [
+        "RBAC"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organization}/roles",
+      "operationId": "createRole",
+      "summary": "Create Role",
+      "tags": [
+        "RBAC"
+      ]
+    }
+  ]
+}

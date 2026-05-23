@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Workspace",
+  "title": "Workspace",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ResourceMeta"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "namespaceSelector": {
+          "type": "object",
+          "description": "Selects namespaces assigned to this workspace",
+          "properties": {
+            "names": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Namespaces in cluster/namespace format"
+            }
+          }
+        }
+      }
+    }
+  }
+}

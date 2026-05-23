@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Application",
+  "title": "Application",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ResourceMeta"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "workspace": {
+          "type": "string",
+          "description": "FQN of the workspace hosting this application"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResourceMeta",
+  "title": "ResourceMeta",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Resource name (1-63 chars, lowercase alphanumeric with hyphens)"
+    },
+    "fqn": {
+      "type": "string",
+      "description": "Fully-qualified name"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "etag": {
+      "type": "string",
+      "description": "Version tag for optimistic concurrency"
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "annotations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

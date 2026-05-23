@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GatewayGroup",
+  "title": "GatewayGroup",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ResourceMeta"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "namespaceSelector": {
+          "type": "object"
+        },
+        "configMode": {
+          "type": "string",
+          "enum": [
+            "BRIDGED",
+            "DIRECT"
+          ]
+        }
+      }
+    }
+  }
+}

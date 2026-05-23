@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/API",
+  "title": "API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ResourceMeta"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "openapi": {
+          "type": "string",
+          "description": "Raw OpenAPI v3 spec defining the API endpoints"
+        },
+        "workloadSelector": {
+          "type": "object",
+          "description": "Gateway workload specification"
+        },
+        "httpServers": {
+          "type": "array",
+          "description": "List of gateway servers exposing the API (output-only)",
+          "items": {
+            "type": "object"
+          }
+        },
+        "endpoints": {
+          "type": "array",
+          "description": "HTTP endpoints generated from OpenAPI spec (output-only)",
+          "items": {
+            "$ref": "#/components/schemas/HTTPEndpoint"
+          }
+        }
+      }
+    }
+  }
+}
