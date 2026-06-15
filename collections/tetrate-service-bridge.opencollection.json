@@ -1,0 +1,1168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tetrate Service Bridge REST API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations"
+          },
+          "docs": "Returns a list of all TSB organizations."
+        },
+        {
+          "info": {
+            "name": "Create Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new TSB organization."
+        },
+        {
+          "info": {
+            "name": "Get Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific organization."
+        },
+        {
+          "info": {
+            "name": "Update Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing organization. The etag from a GET must be included."
+        },
+        {
+          "info": {
+            "name": "Delete Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Deletes an organization and all its child resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns all tenants within an organization."
+        },
+        {
+          "info": {
+            "name": "Create Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant within an organization."
+        },
+        {
+          "info": {
+            "name": "Get Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific tenant."
+        },
+        {
+          "info": {
+            "name": "Update Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing tenant configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Deletes a tenant and all its workspaces."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Returns all workspaces within a tenant."
+        },
+        {
+          "info": {
+            "name": "Create Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new workspace within a tenant."
+        },
+        {
+          "info": {
+            "name": "Get Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific workspace."
+        },
+        {
+          "info": {
+            "name": "Update Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing workspace."
+        },
+        {
+          "info": {
+            "name": "Delete Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Deletes a workspace and all its groups."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns all Kubernetes clusters onboarded to the organization."
+        },
+        {
+          "info": {
+            "name": "Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Onboards a new Kubernetes cluster to TSB."
+        },
+        {
+          "info": {
+            "name": "Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters/:cluster",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific onboarded cluster."
+        },
+        {
+          "info": {
+            "name": "Update Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters/:cluster",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates cluster configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters/:cluster",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster name"
+              }
+            ]
+          },
+          "docs": "Removes a cluster from TSB management."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Returns all applications within a tenant."
+        },
+        {
+          "info": {
+            "name": "Create Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new application within a tenant."
+        },
+        {
+          "info": {
+            "name": "Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific application."
+        },
+        {
+          "info": {
+            "name": "Update Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing application."
+        },
+        {
+          "info": {
+            "name": "Delete Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ]
+          },
+          "docs": "Deletes an application and its registered APIs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ]
+          },
+          "docs": "Returns all APIs registered to an application."
+        },
+        {
+          "info": {
+            "name": "Create API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new API within an application using OpenAPI v3 spec."
+        },
+        {
+          "info": {
+            "name": "Get API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis/:api",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "API name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific API."
+        },
+        {
+          "info": {
+            "name": "Update API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis/:api",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "API name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API registration."
+        },
+        {
+          "info": {
+            "name": "Delete API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis/:api",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "API name"
+              }
+            ]
+          },
+          "docs": "Removes an API registration from an application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gateway Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gateway Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Returns all gateway groups within a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Gateway Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new gateway group within a workspace."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Traffic Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Traffic Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/trafficgroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Returns all traffic groups within a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Traffic Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/trafficgroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new traffic group for managing service routing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Security Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/securitygroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Returns all security groups within a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Security Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/securitygroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new security group for managing authorization policies."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "RBAC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/users",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns all users within the organization."
+        },
+        {
+          "info": {
+            "name": "List Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/roles",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns all RBAC roles within the organization."
+        },
+        {
+          "info": {
+            "name": "Create Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/roles",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom RBAC role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
