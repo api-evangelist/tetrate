@@ -2,17 +2,17 @@
   "repo": "tetrate",
   "feeds": [
     {
-      "source": "https://tetrate.io/blog/",
+      "source": "https://tetrate.io/rss.xml",
       "feed_url": "https://tetrate.io/rss.xml",
       "title": "",
-      "saved": 2,
-      "method": "discovered"
+      "saved": 1,
+      "method": "feed"
     },
     {
       "source": "https://docs.tetrate.io/service-bridge/latest/quickstart/",
       "error": "HTTPError"
     }
   ],
-  "post_count": 3,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 6,
+  "fetched": "2026-06-27T12:03:07Z"
 }
