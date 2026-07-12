@@ -132,6 +132,10 @@ apis:
       - type: Documentation
         url: https://docs.tetrate.io/service-bridge/latest/refs/
 common:
+  - type: DomainSecurity
+    url: security/tetrate-domain-security.yml
+  - type: Authentication
+    url: authentication/tetrate-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/tetrate
   - type: Website

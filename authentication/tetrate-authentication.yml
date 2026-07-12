@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tetrate-service-bridge-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication with TSB username and password
+  sources:
+  - openapi/tetrate-service-bridge-openapi.yml
+- name: JWTToken
+  type: apiKey
+  in: header
+  parameter: x-tetrate-token
+  description: JWT token authentication using the x-tetrate-token header
+  sources:
+  - openapi/tetrate-service-bridge-openapi.yml
