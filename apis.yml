@@ -132,6 +132,8 @@ apis:
       - type: Documentation
         url: https://docs.tetrate.io/service-bridge/latest/refs/
 common:
+  - type: AgenticAccess
+    url: agentic-access/tetrate-agentic-access.yml
   - type: DomainSecurity
     url: security/tetrate-domain-security.yml
   - type: Authentication
