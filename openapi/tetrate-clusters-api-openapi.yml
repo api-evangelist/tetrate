@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Tetrate Service Bridge REST APIs Clusters API
+  description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
+  version: '2.0'
+  contact:
+    name: Tetrate
+    url: https://tetrate.io/
+  license:
+    name: Proprietary
+    url: https://tetrate.io/
+servers:
+- url: https://{tsb-host}:8443/v2
+  description: TSB Management Plane REST API
+  variables:
+    tsb-host:
+      default: tsb.example.com
+      description: Hostname of your TSB management plane
+security:
+- BasicAuth: []
+- JWTToken: []
+tags:
+- name: Clusters
+  description: Manage onboarded Kubernetes clusters
+paths:
+  /organizations/{organization}/clusters:
+    get:
+      operationId: listClusters
+      summary: List Clusters
+      description: Returns all Kubernetes clusters onboarded to the organization.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of clusters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterList'
+    post:
+      operationId: createCluster
+      summary: Create Cluster
+      description: Onboards a new Kubernetes cluster to TSB.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '200':
+          description: Onboarded cluster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+  /organizations/{organization}/clusters/{cluster}:
+    get:
+      operationId: getCluster
+      summary: Get Cluster
+      description: Returns the details of a specific onboarded cluster.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/cluster'
+      responses:
+        '200':
+          description: Cluster details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+    put:
+      operationId: updateCluster
+      summary: Update Cluster
+      description: Updates cluster configuration.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/cluster'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '200':
+          description: Updated cluster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+    delete:
+      operationId: deleteCluster
+      summary: Delete Cluster
+      description: Removes a cluster from TSB management.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/cluster'
+      responses:
+        '200':
+          description: Cluster deleted
+components:
+  parameters:
+    cluster:
+      name: cluster
+      in: path
+      required: true
+      description: Cluster name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+  schemas:
+    ClusterList:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
+    ResourceMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Resource name (1-63 chars, lowercase alphanumeric with hyphens)
+        fqn:
+          type: string
+          description: Fully-qualified name
+        displayName:
+          type: string
+        description:
+          type: string
+        etag:
+          type: string
+          description: Version tag for optimistic concurrency
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Cluster:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            tokenTtl:
+              type: string
+              description: TTL for the cluster service account token
+            network:
+              type: string
+              description: Network identifier for multi-network deployments
+            tier1Cluster:
+              type: boolean
+              description: Whether this cluster is a Tier-1 gateway cluster
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with TSB username and password
+    JWTToken:
+      type: apiKey
+      in: header
+      name: x-tetrate-token
+      description: JWT token authentication using the x-tetrate-token header
+externalDocs:
+  description: Tetrate Service Bridge REST API Guide
+  url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide

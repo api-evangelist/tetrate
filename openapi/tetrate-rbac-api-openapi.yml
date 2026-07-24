@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Tetrate Service Bridge REST APIs RBAC API
+  description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
+  version: '2.0'
+  contact:
+    name: Tetrate
+    url: https://tetrate.io/
+  license:
+    name: Proprietary
+    url: https://tetrate.io/
+servers:
+- url: https://{tsb-host}:8443/v2
+  description: TSB Management Plane REST API
+  variables:
+    tsb-host:
+      default: tsb.example.com
+      description: Hostname of your TSB management plane
+security:
+- BasicAuth: []
+- JWTToken: []
+tags:
+- name: RBAC
+  description: Manage roles, bindings, and access policies
+paths:
+  /organizations/{organization}/users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Returns all users within the organization.
+      tags:
+      - RBAC
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+  /organizations/{organization}/roles:
+    get:
+      operationId: listRoles
+      summary: List Roles
+      description: Returns all RBAC roles within the organization.
+      tags:
+      - RBAC
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+    post:
+      operationId: createRole
+      summary: Create Role
+      description: Creates a new custom RBAC role.
+      tags:
+      - RBAC
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: Created role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        displayName:
+          type: string
+        fqn:
+          type: string
+    UserList:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    RoleList:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    Role:
+      type: object
+      properties:
+        name:
+          type: string
+        fqn:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  type: string
+              verbs:
+                type: array
+                items:
+                  type: string
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with TSB username and password
+    JWTToken:
+      type: apiKey
+      in: header
+      name: x-tetrate-token
+      description: JWT token authentication using the x-tetrate-token header
+externalDocs:
+  description: Tetrate Service Bridge REST API Guide
+  url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide

@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Tetrate Service Bridge REST APIs Applications API
+  description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
+  version: '2.0'
+  contact:
+    name: Tetrate
+    url: https://tetrate.io/
+  license:
+    name: Proprietary
+    url: https://tetrate.io/
+servers:
+- url: https://{tsb-host}:8443/v2
+  description: TSB Management Plane REST API
+  variables:
+    tsb-host:
+      default: tsb.example.com
+      description: Hostname of your TSB management plane
+security:
+- BasicAuth: []
+- JWTToken: []
+tags:
+- name: Applications
+  description: Manage application objects
+paths:
+  /organizations/{organization}/tenants/{tenant}/applications:
+    get:
+      operationId: listApplications
+      summary: List Applications
+      description: Returns all applications within a tenant.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationList'
+    post:
+      operationId: createApplication
+      summary: Create Application
+      description: Creates a new application within a tenant.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+      responses:
+        '200':
+          description: Created application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+  /organizations/{organization}/tenants/{tenant}/applications/{application}:
+    get:
+      operationId: getApplication
+      summary: Get Application
+      description: Returns the details of a specific application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/application'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+    put:
+      operationId: updateApplication
+      summary: Update Application
+      description: Updates an existing application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/application'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Application'
+      responses:
+        '200':
+          description: Updated application
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+    delete:
+      operationId: deleteApplication
+      summary: Delete Application
+      description: Deletes an application and its registered APIs.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/application'
+      responses:
+        '200':
+          description: Application deleted
+components:
+  parameters:
+    application:
+      name: application
+      in: path
+      required: true
+      description: Application name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+  schemas:
+    ApplicationList:
+      type: object
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    ResourceMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Resource name (1-63 chars, lowercase alphanumeric with hyphens)
+        fqn:
+          type: string
+          description: Fully-qualified name
+        displayName:
+          type: string
+        description:
+          type: string
+        etag:
+          type: string
+          description: Version tag for optimistic concurrency
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    Application:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            workspace:
+              type: string
+              description: FQN of the workspace hosting this application
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with TSB username and password
+    JWTToken:
+      type: apiKey
+      in: header
+      name: x-tetrate-token
+      description: JWT token authentication using the x-tetrate-token header
+externalDocs:
+  description: Tetrate Service Bridge REST API Guide
+  url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide

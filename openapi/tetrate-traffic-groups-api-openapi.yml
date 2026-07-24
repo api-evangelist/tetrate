@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: Tetrate Service Bridge REST APIs Traffic Groups API
+  description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
+  version: '2.0'
+  contact:
+    name: Tetrate
+    url: https://tetrate.io/
+  license:
+    name: Proprietary
+    url: https://tetrate.io/
+servers:
+- url: https://{tsb-host}:8443/v2
+  description: TSB Management Plane REST API
+  variables:
+    tsb-host:
+      default: tsb.example.com
+      description: Hostname of your TSB management plane
+security:
+- BasicAuth: []
+- JWTToken: []
+tags:
+- name: Traffic Groups
+  description: Manage traffic settings and service routes
+paths:
+  /organizations/{organization}/tenants/{tenant}/workspaces/{workspace}/trafficgroups:
+    get:
+      operationId: listTrafficGroups
+      summary: List Traffic Groups
+      description: Returns all traffic groups within a workspace.
+      tags:
+      - Traffic Groups
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/workspace'
+      responses:
+        '200':
+          description: List of traffic groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrafficGroupList'
+    post:
+      operationId: createTrafficGroup
+      summary: Create Traffic Group
+      description: Creates a new traffic group for managing service routing.
+      tags:
+      - Traffic Groups
+      parameters:
+      - $ref: '#/components/parameters/organization'
+      - $ref: '#/components/parameters/tenant'
+      - $ref: '#/components/parameters/workspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrafficGroup'
+      responses:
+        '200':
+          description: Created traffic group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrafficGroup'
+components:
+  parameters:
+    workspace:
+      name: workspace
+      in: path
+      required: true
+      description: Workspace name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+  schemas:
+    ResourceMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Resource name (1-63 chars, lowercase alphanumeric with hyphens)
+        fqn:
+          type: string
+          description: Fully-qualified name
+        displayName:
+          type: string
+        description:
+          type: string
+        etag:
+          type: string
+          description: Version tag for optimistic concurrency
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    TrafficGroup:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            namespaceSelector:
+              type: object
+            configMode:
+              type: string
+              enum:
+              - BRIDGED
+              - DIRECT
+    TrafficGroupList:
+      type: object
+      properties:
+        trafficGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrafficGroup'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with TSB username and password
+    JWTToken:
+      type: apiKey
+      in: header
+      name: x-tetrate-token
+      description: JWT token authentication using the x-tetrate-token header
+externalDocs:
+  description: Tetrate Service Bridge REST API Guide
+  url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
