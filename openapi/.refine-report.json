@@ -1,0 +1,32 @@
+{
+  "provider": "tetrate",
+  "sources": [
+    "tetrate-apis-api-openapi.yml",
+    "tetrate-applications-api-openapi.yml",
+    "tetrate-clusters-api-openapi.yml",
+    "tetrate-gateway-groups-api-openapi.yml",
+    "tetrate-organizations-api-openapi.yml",
+    "tetrate-rbac-api-openapi.yml",
+    "tetrate-security-groups-api-openapi.yml",
+    "tetrate-tenants-api-openapi.yml",
+    "tetrate-traffic-groups-api-openapi.yml",
+    "tetrate-workspaces-api-openapi.yml"
+  ],
+  "outputs": [
+    "tetrate-apis-api-openapi.yml",
+    "tetrate-applications-api-openapi.yml",
+    "tetrate-clusters-api-openapi.yml",
+    "tetrate-gateway-groups-api-openapi.yml",
+    "tetrate-organizations-api-openapi.yml",
+    "tetrate-rbac-api-openapi.yml",
+    "tetrate-security-groups-api-openapi.yml",
+    "tetrate-tenants-api-openapi.yml",
+    "tetrate-traffic-groups-api-openapi.yml",
+    "tetrate-workspaces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
