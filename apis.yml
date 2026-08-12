@@ -314,7 +314,7 @@ common:
   - type: Community
     url: https://tetrate.io/community/
   - type: OpenAPI
-    url: openapi/tetrate-service-bridge-openapi.yml
+    url: openapi/_original/tetrate-service-bridge-openapi.yml
   - type: JSONSchema
     url: json-schema/tsb-resource-schema.json
   - type: JSONStructure
