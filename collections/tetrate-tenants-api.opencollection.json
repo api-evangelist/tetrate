@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tetrate Service Bridge REST APIs Tenants API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns all tenants within an organization."
+        },
+        {
+          "info": {
+            "name": "Create Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tenant within an organization."
+        },
+        {
+          "info": {
+            "name": "Get Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific tenant."
+        },
+        {
+          "info": {
+            "name": "Update Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing tenant configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Deletes a tenant and all its workspaces."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

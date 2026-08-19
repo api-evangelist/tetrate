@@ -1,0 +1,206 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tetrate Service Bridge REST APIs API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ]
+          },
+          "docs": "Returns all APIs registered to an application."
+        },
+        {
+          "info": {
+            "name": "Create API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new API within an application using OpenAPI v3 spec."
+        },
+        {
+          "info": {
+            "name": "Get API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis/:api",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "API name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific API."
+        },
+        {
+          "info": {
+            "name": "Update API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis/:api",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "API name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API registration."
+        },
+        {
+          "info": {
+            "name": "Delete API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/applications/:application/apis/:api",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "API name"
+              }
+            ]
+          },
+          "docs": "Removes an API registration from an application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

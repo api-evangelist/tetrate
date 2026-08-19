@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tetrate Service Bridge REST APIs Workspaces API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ]
+          },
+          "docs": "Returns all workspaces within a tenant."
+        },
+        {
+          "info": {
+            "name": "Create Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new workspace within a tenant."
+        },
+        {
+          "info": {
+            "name": "Get Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific workspace."
+        },
+        {
+          "info": {
+            "name": "Update Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing workspace."
+        },
+        {
+          "info": {
+            "name": "Delete Workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Deletes a workspace and all its groups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tetrate Service Bridge REST APIs Gateway Groups API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gateway Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gateway Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ]
+          },
+          "docs": "Returns all gateway groups within a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Gateway Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "path",
+                "description": "Tenant name"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "Workspace name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new gateway group within a workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

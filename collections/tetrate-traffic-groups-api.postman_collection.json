@@ -1,0 +1,367 @@
+{
+  "item": [
+    {
+      "id": "faa20a4d-80f8-4932-98bc-d7701a41d6bc",
+      "name": "Traffic Groups",
+      "description": {
+        "content": "Manage traffic settings and service routes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "743dbaf2-d3f6-4f55-a06e-3fcf931be893",
+          "name": "List Traffic Groups",
+          "request": {
+            "name": "List Traffic Groups",
+            "description": {
+              "content": "Returns all traffic groups within a workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "workspaces",
+                ":workspace",
+                "trafficgroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74e1a66d-0410-411b-87dc-b0e70433b655",
+              "name": "List of traffic groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "workspaces",
+                    ":workspace",
+                    "trafficgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trafficGroups\": [\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"BRIDGED\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aebf53ee-6a36-4cbd-9f3b-01ec1d5c73bf",
+          "name": "Create Traffic Group",
+          "request": {
+            "name": "Create Traffic Group",
+            "description": {
+              "content": "Creates a new traffic group for managing service routing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "workspaces",
+                ":workspace",
+                "trafficgroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54398f55-76d8-4b0c-bef2-356674c282ef",
+              "name": "Created traffic group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "workspaces",
+                    ":workspace",
+                    "trafficgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your TSB management plane",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "tsb.example.com",
+      "key": "tsb-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tsb-host}}:8443/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21776065-2584-40a2-98ab-7a4ed05bbf49",
+    "name": "Tetrate Service Bridge REST APIs Traffic Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+      "type": "text/plain"
+    }
+  }
+}

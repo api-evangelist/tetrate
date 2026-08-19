@@ -1,0 +1,405 @@
+{
+  "item": [
+    {
+      "id": "cfe8fde5-86f9-44f4-977a-8ab0d51e8e29",
+      "name": "RBAC",
+      "description": {
+        "content": "Manage roles, bindings, and access policies",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09b27c02-9beb-4d7d-aac2-e80279ffcd75",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {
+              "content": "Returns all users within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60b276ee-d2eb-4b4c-97fb-8034c332c8d1",
+              "name": "List of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"displayName\": \"string\",\n      \"fqn\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"displayName\": \"string\",\n      \"fqn\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6e9dc60-1342-47a7-98e0-2b783fcf414c",
+          "name": "List Roles",
+          "request": {
+            "name": "List Roles",
+            "description": {
+              "content": "Returns all RBAC roles within the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c159ed4-12e5-42a0-9f73-3fbfc6e4eceb",
+              "name": "List of roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roles\": [\n    {\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"rules\": [\n        {\n          \"resources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"verbs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"resources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"verbs\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"rules\": [\n        {\n          \"resources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"verbs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"resources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"verbs\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2093a14f-b606-4935-8b42-851316a985a6",
+          "name": "Create Role",
+          "request": {
+            "name": "Create Role",
+            "description": {
+              "content": "Creates a new custom RBAC role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rules\": [\n    {\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"verbs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"verbs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "292e902d-2e26-4a8b-99ba-e3f575f3e8df",
+              "name": "Created role",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rules\": [\n    {\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"verbs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"verbs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rules\": [\n    {\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"verbs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"verbs\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your TSB management plane",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "tsb.example.com",
+      "key": "tsb-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tsb-host}}:8443/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f805d6b-66c5-4eee-8d80-a4fd4a822286",
+    "name": "Tetrate Service Bridge REST APIs RBAC API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+      "type": "text/plain"
+    }
+  }
+}

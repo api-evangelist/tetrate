@@ -1,0 +1,864 @@
+{
+  "item": [
+    {
+      "id": "4953f86e-d853-4c31-b2a0-71fbbe11509d",
+      "name": "APIs",
+      "description": {
+        "content": "Manage API objects within applications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63b1f157-ceae-45a7-aba3-7da730e0f73d",
+          "name": "List APIs",
+          "request": {
+            "name": "List APIs",
+            "description": {
+              "content": "Returns all APIs registered to an application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "applications",
+                ":application",
+                "apis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) Application name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6b41902-f906-4de1-b6b9-8b459980124d",
+              "name": "List of APIs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "applications",
+                    ":application",
+                    "apis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) Application name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apis\": [\n    {\n      \"spec\": {\n        \"openapi\": \"string\",\n        \"workloadSelector\": {},\n        \"endpoints\": [\n          {\n            \"path\": \"string\",\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hostnames\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"path\": \"string\",\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hostnames\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"openapi\": \"string\",\n        \"workloadSelector\": {},\n        \"endpoints\": [\n          {\n            \"path\": \"string\",\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hostnames\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"path\": \"string\",\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hostnames\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "952641f5-b42f-4b3c-a1d3-88c05982da03",
+          "name": "Create API",
+          "request": {
+            "name": "Create API",
+            "description": {
+              "content": "Registers a new API within an application using OpenAPI v3 spec.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "applications",
+                ":application",
+                "apis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) Application name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a41108f-440a-4da1-8f3c-8ed1ff07cc0e",
+              "name": "Registered API",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "applications",
+                    ":application",
+                    "apis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) Application name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "118d5618-77a1-46c3-bc6f-ea5828a3e06b",
+          "name": "Get API",
+          "request": {
+            "name": "Get API",
+            "description": {
+              "content": "Returns the details of a specific API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "applications",
+                ":application",
+                "apis",
+                ":api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) Application name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api",
+                  "description": "(Required) API name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ac73b51-5db1-411c-8b62-3e3dc16d1854",
+              "name": "API details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "applications",
+                    ":application",
+                    "apis",
+                    ":api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) Application name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api",
+                      "description": "(Required) API name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0961dae8-a91c-4434-84b1-0e3df6cb2db3",
+          "name": "Update API",
+          "request": {
+            "name": "Update API",
+            "description": {
+              "content": "Updates an existing API registration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "applications",
+                ":application",
+                "apis",
+                ":api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) Application name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api",
+                  "description": "(Required) API name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9dccccf7-726c-483d-90c8-ba13ac094ea4",
+              "name": "Updated API",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "applications",
+                    ":application",
+                    "apis",
+                    ":api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) Application name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api",
+                      "description": "(Required) API name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spec\": {\n    \"openapi\": \"<string>\",\n    \"workloadSelector\": \"<object>\",\n    \"httpServers\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"endpoints\": [\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"path\": \"<string>\",\n        \"methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hostnames\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d55ab2a-1f77-4a3e-bb2d-a704da95a72c",
+          "name": "Delete API",
+          "request": {
+            "name": "Delete API",
+            "description": {
+              "content": "Removes an API registration from an application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "applications",
+                ":application",
+                "apis",
+                ":api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) Application name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api",
+                  "description": "(Required) API name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5de9e29c-f9b9-41be-94fb-10d17152227d",
+              "name": "API deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "applications",
+                    ":application",
+                    "apis",
+                    ":api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) Application name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api",
+                      "description": "(Required) API name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your TSB management plane",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "tsb.example.com",
+      "key": "tsb-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tsb-host}}:8443/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eba5e514-8a7e-4285-b8e9-38a843ee5a02",
+    "name": "Tetrate Service Bridge REST APIs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+      "type": "text/plain"
+    }
+  }
+}

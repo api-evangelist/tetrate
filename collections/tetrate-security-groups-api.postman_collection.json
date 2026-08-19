@@ -1,0 +1,367 @@
+{
+  "item": [
+    {
+      "id": "94d668f7-ec57-498d-b110-3cc2fb9938a5",
+      "name": "Security Groups",
+      "description": {
+        "content": "Manage security settings and policies",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba3f5045-b447-4a78-95ff-c357151804f1",
+          "name": "List Security Groups",
+          "request": {
+            "name": "List Security Groups",
+            "description": {
+              "content": "Returns all security groups within a workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "workspaces",
+                ":workspace",
+                "securitygroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14cc516b-59ea-497d-949f-a2976474e0a8",
+              "name": "List of security groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "workspaces",
+                    ":workspace",
+                    "securitygroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"securityGroups\": [\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19490c07-d160-4ccf-bede-83f9bece43f9",
+          "name": "Create Security Group",
+          "request": {
+            "name": "Create Security Group",
+            "description": {
+              "content": "Creates a new security group for managing authorization policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization",
+                "tenants",
+                ":tenant",
+                "workspaces",
+                ":workspace",
+                "securitygroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization",
+                  "description": "(Required) Organization name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) Workspace name"
+                },
+                {
+                  "description": "Hostname of your TSB management plane",
+                  "type": "any",
+                  "value": "{{tsb-host}}",
+                  "key": "tsb-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff075f7c-d704-4fdb-853e-293c15ffdbf6",
+              "name": "Created security group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization",
+                    "tenants",
+                    ":tenant",
+                    "workspaces",
+                    ":workspace",
+                    "securitygroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization",
+                      "description": "(Required) Organization name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) Workspace name"
+                    },
+                    {
+                      "description": "Hostname of your TSB management plane",
+                      "type": "any",
+                      "value": "{{tsb-host}}",
+                      "key": "tsb-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your TSB management plane",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "tsb.example.com",
+      "key": "tsb-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tsb-host}}:8443/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6fd5183f-7ea2-4782-a0d3-412c7a79bb91",
+    "name": "Tetrate Service Bridge REST APIs Security Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+      "type": "text/plain"
+    }
+  }
+}

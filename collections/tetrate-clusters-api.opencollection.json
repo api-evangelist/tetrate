@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tetrate Service Bridge REST APIs Clusters API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ]
+          },
+          "docs": "Returns all Kubernetes clusters onboarded to the organization."
+        },
+        {
+          "info": {
+            "name": "Create Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Onboards a new Kubernetes cluster to TSB."
+        },
+        {
+          "info": {
+            "name": "Get Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters/:cluster",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster name"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific onboarded cluster."
+        },
+        {
+          "info": {
+            "name": "Update Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters/:cluster",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates cluster configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tsb-host}:8443/v2/organizations/:organization/clusters/:cluster",
+            "params": [
+              {
+                "name": "organization",
+                "value": "",
+                "type": "path",
+                "description": "Organization name"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster name"
+              }
+            ]
+          },
+          "docs": "Removes a cluster from TSB management."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
