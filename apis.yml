@@ -129,7 +129,8 @@ apis:
   description: Manage API objects within applications
   humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   baseURL: https://tsbhost:8443/v2
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
@@ -146,6 +147,8 @@ apis:
   humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   baseURL: https://tsbhost:8443/v2
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -162,6 +165,8 @@ apis:
   humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   baseURL: https://tsbhost:8443/v2
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -194,6 +199,8 @@ apis:
   humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   baseURL: https://tsbhost:8443/v2
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
