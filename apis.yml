@@ -138,23 +138,6 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.tetrate.io/service-bridge/latest/refs/
-- aid: tetrate:tetrate-apis-api
-  name: Tetrate APIs API
-  description: Manage API objects within applications
-  humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
-  baseURL: https://tsbhost:8443/v2
-  tags: []
-  tags_raw:
-  - APIs
-  properties:
-  - type: OpenAPI
-    url: openapi/tetrate-apis-api-openapi.yml
-  - type: Documentation
-    url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
-  - type: JSONSchema
-    url: json-schema/tsb-resource-schema.json
-  - type: JSONStructure
-    url: json-structure/tsb-resource-structure.json
 - aid: tetrate:tetrate-applications-api
   name: Tetrate Applications API
   description: Manage application objects
@@ -299,6 +282,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/tetrate-workspaces-api-openapi.yml
+  - type: Documentation
+    url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
+  - type: JSONSchema
+    url: json-schema/tsb-resource-schema.json
+  - type: JSONStructure
+    url: json-structure/tsb-resource-structure.json
+- aid: tetrate:tetrate-ap-is-api
+  name: Tetrate AP Is API
+  description: Manage API objects within applications
+  humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/
+  baseURL: https://docs.tetrate.io/
+  tags:
+  - AP Is
+  properties:
+  - type: OpenAPI
+    url: openapi/tetrate-ap-is-api-openapi.yml
   - type: Documentation
     url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   - type: JSONSchema
