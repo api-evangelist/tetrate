@@ -288,16 +288,16 @@ apis:
     url: json-schema/tsb-resource-schema.json
   - type: JSONStructure
     url: json-structure/tsb-resource-structure.json
-- aid: tetrate:tetrate-ap-is-api
+- aid: tetrate:tetrate-apis-api
   name: Tetrate AP Is API
   description: Manage API objects within applications
   humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/
   baseURL: https://docs.tetrate.io/
   tags:
-  - AP Is
+  - APIs
   properties:
   - type: OpenAPI
-    url: openapi/tetrate-ap-is-api-openapi.yml
+    url: openapi/tetrate-apis-api-openapi.yml
   - type: Documentation
     url: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   - type: JSONSchema
