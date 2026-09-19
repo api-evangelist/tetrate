@@ -76,6 +76,11 @@ apis:
   baseURL: https://docs.tetrate.io/
   tags:
   - Egress
+  - Gateways
+  - Ingress
+  - Traffic Management
+  tags_raw:
+  - Egress
   - Gateway
   - Ingress
   - Traffic Management
@@ -278,6 +283,8 @@ apis:
   humanURL: https://docs.tetrate.io/service-bridge/reference/rest-api/guide
   baseURL: https://tsbhost:8443/v2
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
@@ -293,7 +300,8 @@ apis:
   description: Manage API objects within applications
   humanURL: https://docs.tetrate.io/service-bridge/latest/refs/tsb/v2/
   baseURL: https://docs.tetrate.io/
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
