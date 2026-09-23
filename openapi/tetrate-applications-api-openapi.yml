@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Tetrate Service Bridge REST APIs Applications API
+  title: Tetrate Service Bridge REST Applications API
   description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
   version: '2.0'
   contact:
@@ -118,6 +118,13 @@ paths:
           description: Application deleted
 components:
   parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
     application:
       name: application
       in: path
@@ -132,21 +139,7 @@ components:
       description: Tenant name
       schema:
         type: string
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
   schemas:
-    ApplicationList:
-      type: object
-      properties:
-        applications:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
     ResourceMeta:
       type: object
       properties:
@@ -171,6 +164,13 @@ components:
           type: object
           additionalProperties:
             type: string
+    ApplicationList:
+      type: object
+      properties:
+        applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
     Application:
       allOf:
       - $ref: '#/components/schemas/ResourceMeta'

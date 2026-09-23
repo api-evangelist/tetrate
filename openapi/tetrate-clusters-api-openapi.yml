@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Tetrate Service Bridge REST APIs Clusters API
+  title: Tetrate Service Bridge REST Clusters API
   description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
   version: '2.0'
   contact:
@@ -113,13 +113,6 @@ paths:
           description: Cluster deleted
 components:
   parameters:
-    cluster:
-      name: cluster
-      in: path
-      required: true
-      description: Cluster name
-      schema:
-        type: string
     organization:
       name: organization
       in: path
@@ -127,14 +120,14 @@ components:
       description: Organization name
       schema:
         type: string
+    cluster:
+      name: cluster
+      in: path
+      required: true
+      description: Cluster name
+      schema:
+        type: string
   schemas:
-    ClusterList:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cluster'
     ResourceMeta:
       type: object
       properties:
@@ -180,6 +173,13 @@ components:
             tier1Cluster:
               type: boolean
               description: Whether this cluster is a Tier-1 gateway cluster
+    ClusterList:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
   securitySchemes:
     BasicAuth:
       type: http

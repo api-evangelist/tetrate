@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Tetrate Service Bridge REST APIs Workspaces API
+  title: Tetrate Service Bridge REST Workspaces API
   description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
   version: '2.0'
   contact:
@@ -118,27 +118,6 @@ paths:
           description: Workspace deleted
 components:
   schemas:
-    Workspace:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            namespaceSelector:
-              type: object
-              description: Selects namespaces assigned to this workspace
-              properties:
-                names:
-                  type: array
-                  items:
-                    type: string
-                  description: Namespaces in cluster/namespace format
     WorkspaceList:
       type: object
       properties:
@@ -170,7 +149,35 @@ components:
           type: object
           additionalProperties:
             type: string
+    Workspace:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            namespaceSelector:
+              type: object
+              description: Selects namespaces assigned to this workspace
+              properties:
+                names:
+                  type: array
+                  items:
+                    type: string
+                  description: Namespaces in cluster/namespace format
   parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
     workspace:
       name: workspace
       in: path
@@ -183,13 +190,6 @@ components:
       in: path
       required: true
       description: Tenant name
-      schema:
-        type: string
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
       schema:
         type: string
   securitySchemes:

@@ -1,16 +1,7 @@
 {
   "provider": "tetrate",
   "sources": [
-    "tetrate-apis-api-openapi.yml",
-    "tetrate-applications-api-openapi.yml",
-    "tetrate-clusters-api-openapi.yml",
-    "tetrate-gateway-groups-api-openapi.yml",
-    "tetrate-organizations-api-openapi.yml",
-    "tetrate-rbac-api-openapi.yml",
-    "tetrate-security-groups-api-openapi.yml",
-    "tetrate-tenants-api-openapi.yml",
-    "tetrate-traffic-groups-api-openapi.yml",
-    "tetrate-workspaces-api-openapi.yml"
+    "_original/tetrate-service-bridge-openapi.yml"
   ],
   "outputs": [
     "tetrate-apis-api-openapi.yml",
@@ -24,9 +15,27 @@
     "tetrate-traffic-groups-api-openapi.yml",
     "tetrate-workspaces-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tetrate-service-bridge-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: tetrate-ap-is-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 15 total)"
+  ],
+  "skipped": [
+    "tetrate-ap-is-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-gateway-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-rbac-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-security-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-tenants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-traffic-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tetrate-workspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
