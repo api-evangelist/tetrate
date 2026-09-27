@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Tetrate Service Bridge REST AP Is API
+  title: Tetrate Service Bridge REST APIs API
   description: The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.
   version: '2.0'
   contact:
@@ -122,60 +122,7 @@ paths:
         '200':
           description: API deleted
 components:
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    application:
-      name: application
-      in: path
-      required: true
-      description: Application name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
-    api:
-      name: api
-      in: path
-      required: true
-      description: API name
-      schema:
-        type: string
   schemas:
-    ResourceMeta:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Resource name (1-63 chars, lowercase alphanumeric with hyphens)
-        fqn:
-          type: string
-          description: Fully-qualified name
-        displayName:
-          type: string
-        description:
-          type: string
-        etag:
-          type: string
-          description: Version tag for optimistic concurrency
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        annotations:
-          type: object
-          additionalProperties:
-            type: string
     APIList:
       type: object
       properties:
@@ -183,19 +130,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/API'
-    HTTPEndpoint:
-      type: object
-      properties:
-        path:
-          type: string
-        methods:
-          type: array
-          items:
-            type: string
-        hostnames:
-          type: array
-          items:
-            type: string
     API:
       allOf:
       - $ref: '#/components/schemas/ResourceMeta'
@@ -220,6 +154,72 @@ components:
               description: HTTP endpoints generated from OpenAPI spec (output-only)
               items:
                 $ref: '#/components/schemas/HTTPEndpoint'
+    ResourceMeta:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Resource name (1-63 chars, lowercase alphanumeric with hyphens)
+        fqn:
+          type: string
+          description: Fully-qualified name
+        displayName:
+          type: string
+        description:
+          type: string
+        etag:
+          type: string
+          description: Version tag for optimistic concurrency
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+    HTTPEndpoint:
+      type: object
+      properties:
+        path:
+          type: string
+        methods:
+          type: array
+          items:
+            type: string
+        hostnames:
+          type: array
+          items:
+            type: string
+  parameters:
+    api:
+      name: api
+      in: path
+      required: true
+      description: API name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
+    application:
+      name: application
+      in: path
+      required: true
+      description: Application name
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

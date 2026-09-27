@@ -116,6 +116,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    OrganizationList:
+      type: object
+      properties:
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
     Error:
       type: object
       properties:
@@ -165,13 +172,6 @@ components:
               type: string
             deletionProtectionEnabled:
               type: boolean
-    OrganizationList:
-      type: object
-      properties:
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
   parameters:
     organization:
       name: organization

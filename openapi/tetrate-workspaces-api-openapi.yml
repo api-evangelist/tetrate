@@ -117,6 +117,28 @@ paths:
         '200':
           description: Workspace deleted
 components:
+  parameters:
+    workspace:
+      name: workspace
+      in: path
+      required: true
+      description: Workspace name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
   schemas:
     WorkspaceList:
       type: object
@@ -170,28 +192,6 @@ components:
                   items:
                     type: string
                   description: Namespaces in cluster/namespace format
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    workspace:
-      name: workspace
-      in: path
-      required: true
-      description: Workspace name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
   securitySchemes:
     BasicAuth:
       type: http

@@ -112,21 +112,6 @@ paths:
         '200':
           description: Tenant deleted
 components:
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
   schemas:
     TenantList:
       type: object
@@ -173,6 +158,21 @@ components:
               type: string
             deletionProtectionEnabled:
               type: boolean
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

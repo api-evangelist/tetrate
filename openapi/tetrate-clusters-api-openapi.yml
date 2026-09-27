@@ -112,21 +112,6 @@ paths:
         '200':
           description: Cluster deleted
 components:
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    cluster:
-      name: cluster
-      in: path
-      required: true
-      description: Cluster name
-      schema:
-        type: string
   schemas:
     ResourceMeta:
       type: object
@@ -180,6 +165,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Cluster'
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    cluster:
+      name: cluster
+      in: path
+      required: true
+      description: Cluster name
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

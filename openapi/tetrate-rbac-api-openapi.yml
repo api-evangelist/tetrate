@@ -77,14 +77,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Role'
 components:
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
   schemas:
     User:
       type: object
@@ -135,6 +127,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Role'
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

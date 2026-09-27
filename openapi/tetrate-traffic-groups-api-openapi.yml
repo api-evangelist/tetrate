@@ -66,18 +66,18 @@ paths:
                 $ref: '#/components/schemas/TrafficGroup'
 components:
   parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
     workspace:
       name: workspace
       in: path
       required: true
       description: Workspace name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
       schema:
         type: string
     tenant:
@@ -112,6 +112,13 @@ components:
           type: object
           additionalProperties:
             type: string
+    TrafficGroupList:
+      type: object
+      properties:
+        trafficGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrafficGroup'
     TrafficGroup:
       allOf:
       - $ref: '#/components/schemas/ResourceMeta'
@@ -127,13 +134,6 @@ components:
               enum:
               - BRIDGED
               - DIRECT
-    TrafficGroupList:
-      type: object
-      properties:
-        trafficGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrafficGroup'
   securitySchemes:
     BasicAuth:
       type: http

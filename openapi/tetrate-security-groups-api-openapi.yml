@@ -66,18 +66,18 @@ paths:
                 $ref: '#/components/schemas/SecurityGroup'
 components:
   parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
     workspace:
       name: workspace
       in: path
       required: true
       description: Workspace name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
       schema:
         type: string
     tenant:
