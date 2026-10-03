@@ -118,6 +118,21 @@ paths:
           description: Application deleted
 components:
   schemas:
+    Application:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            workspace:
+              type: string
+              description: FQN of the workspace hosting this application
     ApplicationList:
       type: object
       properties:
@@ -149,21 +164,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Application:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            workspace:
-              type: string
-              description: FQN of the workspace hosting this application
   parameters:
     organization:
       name: organization

@@ -113,6 +113,34 @@ paths:
           description: Cluster deleted
 components:
   schemas:
+    ClusterList:
+      type: object
+      properties:
+        clusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cluster'
+    Cluster:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            tokenTtl:
+              type: string
+              description: TTL for the cluster service account token
+            network:
+              type: string
+              description: Network identifier for multi-network deployments
+            tier1Cluster:
+              type: boolean
+              description: Whether this cluster is a Tier-1 gateway cluster
     ResourceMeta:
       type: object
       properties:
@@ -137,47 +165,19 @@ components:
           type: object
           additionalProperties:
             type: string
-    Cluster:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            tokenTtl:
-              type: string
-              description: TTL for the cluster service account token
-            network:
-              type: string
-              description: Network identifier for multi-network deployments
-            tier1Cluster:
-              type: boolean
-              description: Whether this cluster is a Tier-1 gateway cluster
-    ClusterList:
-      type: object
-      properties:
-        clusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cluster'
   parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
     cluster:
       name: cluster
       in: path
       required: true
       description: Cluster name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
       schema:
         type: string
   securitySchemes:

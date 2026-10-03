@@ -112,14 +112,36 @@ paths:
         '200':
           description: Tenant deleted
 components:
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
   schemas:
-    TenantList:
+    Tenant:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
       type: object
       properties:
-        tenants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tenant'
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            deletionProtectionEnabled:
+              type: boolean
     ResourceMeta:
       type: object
       properties:
@@ -144,35 +166,13 @@ components:
           type: object
           additionalProperties:
             type: string
-    Tenant:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
+    TenantList:
       type: object
       properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            deletionProtectionEnabled:
-              type: boolean
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
   securitySchemes:
     BasicAuth:
       type: http

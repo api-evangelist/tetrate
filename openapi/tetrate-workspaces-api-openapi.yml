@@ -140,13 +140,27 @@ components:
       schema:
         type: string
   schemas:
-    WorkspaceList:
+    Workspace:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
       type: object
       properties:
-        workspaces:
-          type: array
-          items:
-            $ref: '#/components/schemas/Workspace'
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            namespaceSelector:
+              type: object
+              description: Selects namespaces assigned to this workspace
+              properties:
+                names:
+                  type: array
+                  items:
+                    type: string
+                  description: Namespaces in cluster/namespace format
     ResourceMeta:
       type: object
       properties:
@@ -171,27 +185,13 @@ components:
           type: object
           additionalProperties:
             type: string
-    Workspace:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
+    WorkspaceList:
       type: object
       properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            namespaceSelector:
-              type: object
-              description: Selects namespaces assigned to this workspace
-              properties:
-                names:
-                  type: array
-                  items:
-                    type: string
-                  description: Namespaces in cluster/namespace format
+        workspaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
   securitySchemes:
     BasicAuth:
       type: http

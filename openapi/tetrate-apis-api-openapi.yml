@@ -122,14 +122,49 @@ paths:
         '200':
           description: API deleted
 components:
+  parameters:
+    api:
+      name: api
+      in: path
+      required: true
+      description: API name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
+    application:
+      name: application
+      in: path
+      required: true
+      description: Application name
+      schema:
+        type: string
   schemas:
-    APIList:
+    HTTPEndpoint:
       type: object
       properties:
-        apis:
+        path:
+          type: string
+        methods:
           type: array
           items:
-            $ref: '#/components/schemas/API'
+            type: string
+        hostnames:
+          type: array
+          items:
+            type: string
     API:
       allOf:
       - $ref: '#/components/schemas/ResourceMeta'
@@ -178,48 +213,13 @@ components:
           type: object
           additionalProperties:
             type: string
-    HTTPEndpoint:
+    APIList:
       type: object
       properties:
-        path:
-          type: string
-        methods:
+        apis:
           type: array
           items:
-            type: string
-        hostnames:
-          type: array
-          items:
-            type: string
-  parameters:
-    api:
-      name: api
-      in: path
-      required: true
-      description: API name
-      schema:
-        type: string
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
-    application:
-      name: application
-      in: path
-      required: true
-      description: Application name
-      schema:
-        type: string
+            $ref: '#/components/schemas/API'
   securitySchemes:
     BasicAuth:
       type: http

@@ -65,28 +65,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/GatewayGroup'
 components:
-  parameters:
-    workspace:
-      name: workspace
-      in: path
-      required: true
-      description: Workspace name
-      schema:
-        type: string
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
   schemas:
     GatewayGroup:
       allOf:
@@ -103,6 +81,13 @@ components:
               enum:
               - BRIDGED
               - DIRECT
+    GatewayGroupList:
+      type: object
+      properties:
+        gatewayGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GatewayGroup'
     ResourceMeta:
       type: object
       properties:
@@ -127,13 +112,28 @@ components:
           type: object
           additionalProperties:
             type: string
-    GatewayGroupList:
-      type: object
-      properties:
-        gatewayGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/GatewayGroup'
+  parameters:
+    workspace:
+      name: workspace
+      in: path
+      required: true
+      description: Workspace name
+      schema:
+        type: string
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http
