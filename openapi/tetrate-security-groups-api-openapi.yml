@@ -65,29 +65,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/SecurityGroup'
 components:
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant name
+      schema:
+        type: string
+    workspace:
+      name: workspace
+      in: path
+      required: true
+      description: Workspace name
+      schema:
+        type: string
   schemas:
-    SecurityGroup:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            namespaceSelector:
-              type: object
-            configMode:
-              type: string
-              enum:
-              - BRIDGED
-              - DIRECT
-    SecurityGroupList:
-      type: object
-      properties:
-        securityGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityGroup'
     ResourceMeta:
       type: object
       properties:
@@ -112,28 +112,28 @@ components:
           type: object
           additionalProperties:
             type: string
-  parameters:
-    workspace:
-      name: workspace
-      in: path
-      required: true
-      description: Workspace name
-      schema:
-        type: string
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
-    tenant:
-      name: tenant
-      in: path
-      required: true
-      description: Tenant name
-      schema:
-        type: string
+    SecurityGroup:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            namespaceSelector:
+              type: object
+            configMode:
+              type: string
+              enum:
+              - BRIDGED
+              - DIRECT
+    SecurityGroupList:
+      type: object
+      properties:
+        securityGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityGroup'
   securitySchemes:
     BasicAuth:
       type: http

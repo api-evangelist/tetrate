@@ -112,6 +112,21 @@ paths:
         '200':
           description: Cluster deleted
 components:
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
+    cluster:
+      name: cluster
+      in: path
+      required: true
+      description: Cluster name
+      schema:
+        type: string
   schemas:
     ClusterList:
       type: object
@@ -120,27 +135,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Cluster'
-    Cluster:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            tokenTtl:
-              type: string
-              description: TTL for the cluster service account token
-            network:
-              type: string
-              description: Network identifier for multi-network deployments
-            tier1Cluster:
-              type: boolean
-              description: Whether this cluster is a Tier-1 gateway cluster
     ResourceMeta:
       type: object
       properties:
@@ -165,21 +159,27 @@ components:
           type: object
           additionalProperties:
             type: string
-  parameters:
-    cluster:
-      name: cluster
-      in: path
-      required: true
-      description: Cluster name
-      schema:
-        type: string
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
+    Cluster:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            tokenTtl:
+              type: string
+              description: TTL for the cluster service account token
+            network:
+              type: string
+              description: Network identifier for multi-network deployments
+            tier1Cluster:
+              type: boolean
+              description: Whether this cluster is a Tier-1 gateway cluster
   securitySchemes:
     BasicAuth:
       type: http

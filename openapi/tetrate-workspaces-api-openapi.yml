@@ -118,13 +118,6 @@ paths:
           description: Workspace deleted
 components:
   parameters:
-    workspace:
-      name: workspace
-      in: path
-      required: true
-      description: Workspace name
-      schema:
-        type: string
     organization:
       name: organization
       in: path
@@ -139,28 +132,14 @@ components:
       description: Tenant name
       schema:
         type: string
+    workspace:
+      name: workspace
+      in: path
+      required: true
+      description: Workspace name
+      schema:
+        type: string
   schemas:
-    Workspace:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            displayName:
-              type: string
-            description:
-              type: string
-            namespaceSelector:
-              type: object
-              description: Selects namespaces assigned to this workspace
-              properties:
-                names:
-                  type: array
-                  items:
-                    type: string
-                  description: Namespaces in cluster/namespace format
     ResourceMeta:
       type: object
       properties:
@@ -192,6 +171,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Workspace'
+    Workspace:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            displayName:
+              type: string
+            description:
+              type: string
+            namespaceSelector:
+              type: object
+              description: Selects namespaces assigned to this workspace
+              properties:
+                names:
+                  type: array
+                  items:
+                    type: string
+                  description: Namespaces in cluster/namespace format
   securitySchemes:
     BasicAuth:
       type: http
