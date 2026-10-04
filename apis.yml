@@ -313,6 +313,9 @@ apis:
   - type: JSONStructure
     url: json-structure/tsb-resource-structure.json
 common:
+  - type: CapabilityMap
+    url: capabilities/tetrate-capability-edges.yml
+    name: Tetrate Business Capability Map
   - type: AgenticAccess
     url: agentic-access/tetrate-agentic-access.yml
   - type: DomainSecurity
