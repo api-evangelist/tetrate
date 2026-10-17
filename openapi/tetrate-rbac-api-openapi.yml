@@ -77,15 +77,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Role'
 components:
-  parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
   schemas:
+    RoleList:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
     User:
       type: object
       properties:
@@ -97,13 +96,6 @@ components:
           type: string
         fqn:
           type: string
-    UserList:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
     Role:
       type: object
       properties:
@@ -128,13 +120,21 @@ components:
                 type: array
                 items:
                   type: string
-    RoleList:
+    UserList:
       type: object
       properties:
-        roles:
+        users:
           type: array
           items:
-            $ref: '#/components/schemas/Role'
+            $ref: '#/components/schemas/User'
+  parameters:
+    organization:
+      name: organization
+      in: path
+      required: true
+      description: Organization name
+      schema:
+        type: string
   securitySchemes:
     BasicAuth:
       type: http

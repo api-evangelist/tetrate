@@ -123,13 +123,6 @@ paths:
           description: API deleted
 components:
   parameters:
-    organization:
-      name: organization
-      in: path
-      required: true
-      description: Organization name
-      schema:
-        type: string
     application:
       name: application
       in: path
@@ -137,11 +130,11 @@ components:
       description: Application name
       schema:
         type: string
-    api:
-      name: api
+    organization:
+      name: organization
       in: path
       required: true
-      description: API name
+      description: Organization name
       schema:
         type: string
     tenant:
@@ -151,38 +144,14 @@ components:
       description: Tenant name
       schema:
         type: string
+    api:
+      name: api
+      in: path
+      required: true
+      description: API name
+      schema:
+        type: string
   schemas:
-    APIList:
-      type: object
-      properties:
-        apis:
-          type: array
-          items:
-            $ref: '#/components/schemas/API'
-    API:
-      allOf:
-      - $ref: '#/components/schemas/ResourceMeta'
-      type: object
-      properties:
-        spec:
-          type: object
-          properties:
-            openapi:
-              type: string
-              description: Raw OpenAPI v3 spec defining the API endpoints
-            workloadSelector:
-              type: object
-              description: Gateway workload specification
-            httpServers:
-              type: array
-              description: List of gateway servers exposing the API (output-only)
-              items:
-                type: object
-            endpoints:
-              type: array
-              description: HTTP endpoints generated from OpenAPI spec (output-only)
-              items:
-                $ref: '#/components/schemas/HTTPEndpoint'
     ResourceMeta:
       type: object
       properties:
@@ -207,6 +176,30 @@ components:
           type: object
           additionalProperties:
             type: string
+    API:
+      allOf:
+      - $ref: '#/components/schemas/ResourceMeta'
+      type: object
+      properties:
+        spec:
+          type: object
+          properties:
+            openapi:
+              type: string
+              description: Raw OpenAPI v3 spec defining the API endpoints
+            workloadSelector:
+              type: object
+              description: Gateway workload specification
+            httpServers:
+              type: array
+              description: List of gateway servers exposing the API (output-only)
+              items:
+                type: object
+            endpoints:
+              type: array
+              description: HTTP endpoints generated from OpenAPI spec (output-only)
+              items:
+                $ref: '#/components/schemas/HTTPEndpoint'
     HTTPEndpoint:
       type: object
       properties:
@@ -220,6 +213,13 @@ components:
           type: array
           items:
             type: string
+    APIList:
+      type: object
+      properties:
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/API'
   securitySchemes:
     BasicAuth:
       type: http
