@@ -313,6 +313,8 @@ apis:
   - type: JSONStructure
     url: json-structure/tsb-resource-structure.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/tetrate/overview
   - type: Plans
     url: plans/tetrate-plans-pricing.yml
   - type: RateLimits
