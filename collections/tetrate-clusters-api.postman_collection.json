@@ -1,662 +1,575 @@
 {
+  "info": {
+    "_postman_id": "52771b83-d8a3-40c1-9ec9-022e8f275be2",
+    "name": "Tetrate Service Bridge REST Clusters API",
+    "description": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:26.000Z",
+    "updatedAt": "2026-10-21T21:00:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52771b83-d8a3-40c1-9ec9-022e8f275be2"
+  },
   "item": [
     {
-      "id": "f811fe9c-d388-408a-ba8f-c8af04bc9af7",
-      "name": "Clusters",
-      "description": {
-        "content": "Manage onboarded Kubernetes clusters",
-        "type": "text/plain"
-      },
+      "name": "organizations",
       "item": [
         {
-          "id": "55cd9f79-4e19-42b9-ab97-703cc6dd2758",
-          "name": "List Clusters",
-          "request": {
-            "name": "List Clusters",
-            "description": {
-              "content": "Returns all Kubernetes clusters onboarded to the organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "clusters"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{organization}",
+          "item": [
             {
-              "id": "0fb2cd10-c448-4363-b2d0-0a5b03c7370c",
-              "name": "List of clusters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "clusters"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "clusters",
+              "item": [
+                {
+                  "name": "{cluster}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
+                      "name": "Get Cluster",
+                      "id": "5cf10594-8502-433e-a2ce-779a86b6b9cb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/clusters/:cluster",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "clusters",
+                            ":cluster"
+                          ],
+                          "variable": [
+                            {
+                              "id": "24790365-5c88-47b8-af21-a21e44627e20",
+                              "key": "organization",
+                              "value": "<string>",
+                              "description": "(Required) Organization name"
+                            },
+                            {
+                              "id": "429d2756-273f-45f5-aa54-f50b1e0fa338",
+                              "key": "cluster",
+                              "value": "<string>",
+                              "description": "(Required) Cluster name"
+                            }
+                          ]
+                        },
+                        "description": "Returns the details of a specific onboarded cluster."
+                      },
+                      "response": [
+                        {
+                          "id": "1d21dab8-7141-4b0b-bfea-5d8ffa19f33b",
+                          "name": "Cluster details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/clusters/:cluster",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "clusters",
+                                ":cluster"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organization"
+                                },
+                                {
+                                  "key": "cluster"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-21T21:00:27.000Z",
+                          "updatedAt": "2026-10-21T21:00:27.000Z",
+                          "uid": "35240-1d21dab8-7141-4b0b-bfea-5d8ffa19f33b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:27.000Z",
+                      "updatedAt": "2026-10-21T21:00:27.000Z",
+                      "uid": "35240-5cf10594-8502-433e-a2ce-779a86b6b9cb"
                     },
                     {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
+                      "name": "Update Cluster",
+                      "id": "59926202-c701-433d-aeee-16b212e3f22f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/clusters/:cluster",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "clusters",
+                            ":cluster"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9c944089-f9b4-451c-8c97-d05651a94d1e",
+                              "key": "organization",
+                              "value": "<string>",
+                              "description": "(Required) Organization name"
+                            },
+                            {
+                              "id": "a5043d4f-b817-45c8-a0f0-954f2945509f",
+                              "key": "cluster",
+                              "value": "<string>",
+                              "description": "(Required) Cluster name"
+                            }
+                          ]
+                        },
+                        "description": "Updates cluster configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "0e0e60d5-8924-4eb9-afc8-3d6a9409ffd1",
+                          "name": "Updated cluster",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/clusters/:cluster",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "clusters",
+                                ":cluster"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organization"
+                                },
+                                {
+                                  "key": "cluster"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-21T21:00:27.000Z",
+                          "updatedAt": "2026-10-21T21:00:27.000Z",
+                          "uid": "35240-0e0e60d5-8924-4eb9-afc8-3d6a9409ffd1"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:27.000Z",
+                      "updatedAt": "2026-10-21T21:00:27.000Z",
+                      "uid": "35240-59926202-c701-433d-aeee-16b212e3f22f"
+                    },
+                    {
+                      "name": "Delete Cluster",
+                      "id": "557fb763-03e6-4f3e-b633-c20b510a67f7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/clusters/:cluster",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "clusters",
+                            ":cluster"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fbf59b7e-250d-4049-b97a-e672d18cb5d6",
+                              "key": "organization",
+                              "value": "<string>",
+                              "description": "(Required) Organization name"
+                            },
+                            {
+                              "id": "1880bc15-937c-4be1-b458-9cd71cc5dff9",
+                              "key": "cluster",
+                              "value": "<string>",
+                              "description": "(Required) Cluster name"
+                            }
+                          ]
+                        },
+                        "description": "Removes a cluster from TSB management."
+                      },
+                      "response": [
+                        {
+                          "id": "455a0eb4-f407-425f-afda-407e7b179eaa",
+                          "name": "Cluster deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/clusters/:cluster",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "clusters",
+                                ":cluster"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organization"
+                                },
+                                {
+                                  "key": "cluster"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T21:00:27.000Z",
+                          "updatedAt": "2026-10-21T21:00:27.000Z",
+                          "uid": "35240-455a0eb4-f407-425f-afda-407e7b179eaa"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:00:27.000Z",
+                      "updatedAt": "2026-10-21T21:00:27.000Z",
+                      "uid": "35240-557fb763-03e6-4f3e-b633-c20b510a67f7"
                     }
-                  ]
+                  ],
+                  "id": "573d4572-b11c-4045-99ff-5069fec13bb3",
+                  "createdAt": "2026-10-21T21:00:27.000Z",
+                  "updatedAt": "2026-10-21T21:00:27.000Z",
+                  "uid": "35240-573d4572-b11c-4045-99ff-5069fec13bb3"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "List Clusters",
+                  "id": "27608b7f-f2a3-46fe-bb6d-98e7c1f242cf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"clusters\": [\n    {\n      \"spec\": {\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"tokenTtl\": \"string\",\n        \"network\": \"string\",\n        \"tier1Cluster\": false\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"tokenTtl\": \"string\",\n        \"network\": \"string\",\n        \"tier1Cluster\": false\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9bb04c85-f8b0-4bc6-ad84-5c064d560be6",
-          "name": "Create Cluster",
-          "request": {
-            "name": "Create Cluster",
-            "description": {
-              "content": "Onboards a new Kubernetes cluster to TSB.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "clusters"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1549b7ca-9447-43e8-b140-2d165e17e831",
-              "name": "Onboarded cluster",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "clusters"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization/clusters",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization",
+                        "clusters"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5f2159ea-0e7f-4448-9847-d847898eacf9",
+                          "key": "organization",
+                          "value": "<string>",
+                          "description": "(Required) Organization name"
+                        }
+                      ]
                     },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "Returns all Kubernetes clusters onboarded to the organization."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "response": [
+                    {
+                      "id": "22b16593-491f-40b3-8e10-0d091a6a2c34",
+                      "name": "List of clusters",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/clusters",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "clusters"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"clusters\": [\n    {\n      \"spec\": {\n        \"displayName\": \"ut irure eu enim\",\n        \"description\": \"pariatur consectetur Duis\",\n        \"tokenTtl\": \"in deserunt labore cupidatat\",\n        \"network\": \"sunt do fugiat dolor\",\n        \"tier1Cluster\": false\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"nonbb_\": \"<string>\",\n        \"in_00\": \"<string>\",\n        \"nulla14d\": \"<string>\",\n        \"anim_ac9\": \"<string>\"\n      },\n      \"annotations\": {\n        \"magnabc\": \"<string>\"\n      }\n    },\n    {\n      \"spec\": {\n        \"displayName\": \"enim exercitation eu\",\n        \"description\": \"occaecat Excepteur\",\n        \"tokenTtl\": \"officia cupidatat dolor ut\",\n        \"network\": \"eiusmod consequat dolore ut\",\n        \"tier1Cluster\": false\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"dolor_dcc\": \"<string>\"\n      },\n      \"annotations\": {\n        \"in17\": \"<string>\",\n        \"eu_cd\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:00:27.000Z",
+                      "updatedAt": "2026-10-21T21:00:27.000Z",
+                      "uid": "35240-22b16593-491f-40b3-8e10-0d091a6a2c34"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b7ef84a6-cdf6-43ec-81f6-0537b0c6eb43",
-          "name": "Get Cluster",
-          "request": {
-            "name": "Get Cluster",
-            "description": {
-              "content": "Returns the details of a specific onboarded cluster.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "clusters",
-                ":cluster"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "cluster",
-                  "description": "(Required) Cluster name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6978d99a-faae-4fdd-a7a9-3259673bcc43",
-              "name": "Cluster details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "clusters",
-                    ":cluster"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "cluster",
-                      "description": "(Required) Cluster name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
+                  "createdAt": "2026-10-21T21:00:27.000Z",
+                  "updatedAt": "2026-10-21T21:00:27.000Z",
+                  "uid": "35240-27608b7f-f2a3-46fe-bb6d-98e7c1f242cf"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "Create Cluster",
+                  "id": "0f8d8f87-b893-42be-b71f-246944d077a5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "56c543d8-4861-46e5-bc24-6bb9ad10eb43",
-          "name": "Update Cluster",
-          "request": {
-            "name": "Update Cluster",
-            "description": {
-              "content": "Updates cluster configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "clusters",
-                ":cluster"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "cluster",
-                  "description": "(Required) Cluster name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b1b59bb4-e04b-40bb-892a-dc611f0e2245",
-              "name": "Updated cluster",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "clusters",
-                    ":cluster"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "cluster",
-                      "description": "(Required) Cluster name"
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization/clusters",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization",
+                        "clusters"
+                      ],
+                      "variable": [
+                        {
+                          "id": "994bd41b-7851-42e8-b998-59db2dddad33",
+                          "key": "organization",
+                          "value": "<string>",
+                          "description": "(Required) Organization name"
+                        }
+                      ]
                     },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "Onboards a new Kubernetes cluster to TSB."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "response": [
+                    {
+                      "id": "bfc07534-6536-407e-a484-7fadd6023b21",
+                      "name": "Onboarded cluster",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/clusters",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "clusters"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"spec\": {\n    \"displayName\": \"irure minim nisi est\",\n    \"description\": \"dolor ex occaecat\",\n    \"tokenTtl\": \"eiusmod\",\n    \"network\": \"veniam\",\n    \"tier1Cluster\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"in_c\": \"<string>\"\n  },\n  \"annotations\": {\n    \"aliqua2\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T21:00:27.000Z",
+                      "updatedAt": "2026-10-21T21:00:27.000Z",
+                      "uid": "35240-bfc07534-6536-407e-a484-7fadd6023b21"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-21T21:00:27.000Z",
+                  "updatedAt": "2026-10-21T21:00:27.000Z",
+                  "uid": "35240-0f8d8f87-b893-42be-b71f-246944d077a5"
                 }
               ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tokenTtl\": \"<string>\",\n    \"network\": \"<string>\",\n    \"tier1Cluster\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "6c70158c-0aaa-4052-b337-329b237c1bd1",
+              "createdAt": "2026-10-21T21:00:27.000Z",
+              "updatedAt": "2026-10-21T21:00:27.000Z",
+              "uid": "35240-6c70158c-0aaa-4052-b337-329b237c1bd1"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1e5c3563-26f4-4d68-9ccc-bd8ba696b7e1",
-          "name": "Delete Cluster",
-          "request": {
-            "name": "Delete Cluster",
-            "description": {
-              "content": "Removes a cluster from TSB management.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "clusters",
-                ":cluster"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "cluster",
-                  "description": "(Required) Cluster name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "43d34d86-5a3c-4f98-b7f4-c325d239e4f8",
-              "name": "Cluster deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "clusters",
-                    ":cluster"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "cluster",
-                      "description": "(Required) Cluster name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "527989e2-d94e-4503-ad90-3db687cf563d",
+          "createdAt": "2026-10-21T21:00:27.000Z",
+          "updatedAt": "2026-10-21T21:00:27.000Z",
+          "uid": "35240-527989e2-d94e-4503-ad90-3db687cf563d"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Hostname of your TSB management plane",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "tsb.example.com",
-      "key": "tsb-host"
-    },
-    {
-      "type": "string",
-      "value": "https://{{tsb-host}}:8443/v2",
-      "key": "baseUrl"
+      "id": "68812770-8a05-467a-928e-10151f65d655",
+      "createdAt": "2026-10-21T21:00:27.000Z",
+      "updatedAt": "2026-10-21T21:00:27.000Z",
+      "uid": "35240-68812770-8a05-467a-928e-10151f65d655"
     }
   ],
   "auth": {
@@ -664,21 +577,24 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ff941aff-9ddb-436d-9cca-9c9e17a8152a",
-    "name": "Tetrate Service Bridge REST APIs Clusters API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "tsb-host",
+      "value": "tsb.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{tsb-host}}:8443/v2"
     }
-  }
+  ]
 }

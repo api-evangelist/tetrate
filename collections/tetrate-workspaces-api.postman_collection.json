@@ -1,752 +1,658 @@
 {
+  "info": {
+    "_postman_id": "911dc2d9-3327-4cf6-83ba-52f80870a675",
+    "name": "Tetrate Service Bridge REST Workspaces API",
+    "description": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:14.000Z",
+    "updatedAt": "2026-10-21T21:01:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-911dc2d9-3327-4cf6-83ba-52f80870a675"
+  },
   "item": [
     {
-      "id": "2860e15c-f52e-4797-9397-5b5baa1f8400",
-      "name": "Workspaces",
-      "description": {
-        "content": "Manage workspaces within tenants",
-        "type": "text/plain"
-      },
+      "name": "organizations",
       "item": [
         {
-          "id": "af0b69a8-cb9c-4b6d-822c-98afe16908df",
-          "name": "List Workspaces",
-          "request": {
-            "name": "List Workspaces",
-            "description": {
-              "content": "Returns all workspaces within a tenant.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{organization}",
+          "item": [
             {
-              "id": "6dcad539-e44e-46ad-902c-d3d9ab25aede",
-              "name": "List of workspaces",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "tenants",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "workspaces",
+                      "item": [
+                        {
+                          "name": "{workspace}",
+                          "item": [
+                            {
+                              "name": "Get Workspace",
+                              "id": "50b464c8-9f48-477c-bba5-7ea7d0fad68f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organization",
+                                    "tenants",
+                                    ":tenant",
+                                    "workspaces",
+                                    ":workspace"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2acdb940-ec7a-40b5-bd6b-2693d134aed7",
+                                      "key": "organization",
+                                      "value": "<string>",
+                                      "description": "(Required) Organization name"
+                                    },
+                                    {
+                                      "id": "62174488-fdc5-4efd-9246-33f85bf4085f",
+                                      "key": "tenant",
+                                      "value": "<string>",
+                                      "description": "(Required) Tenant name"
+                                    },
+                                    {
+                                      "id": "087c4a78-52da-44f6-8333-83481472873d",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) Workspace name"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the details of a specific workspace."
+                              },
+                              "response": [
+                                {
+                                  "id": "81db026b-8d7e-44f6-b42d-f92c1e00b80c",
+                                  "name": "Workspace details",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization"
+                                        },
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "workspace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-21T21:01:15.000Z",
+                                  "updatedAt": "2026-10-21T21:01:15.000Z",
+                                  "uid": "35240-81db026b-8d7e-44f6-b42d-f92c1e00b80c"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T21:01:14.000Z",
+                              "updatedAt": "2026-10-21T21:01:14.000Z",
+                              "uid": "35240-50b464c8-9f48-477c-bba5-7ea7d0fad68f"
+                            },
+                            {
+                              "name": "Update Workspace",
+                              "id": "d889b5e4-300a-4df2-b4f9-d1a2b5c7a26b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organization",
+                                    "tenants",
+                                    ":tenant",
+                                    "workspaces",
+                                    ":workspace"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f5a2128d-96ba-4b51-9b4c-22d74f1efbb2",
+                                      "key": "organization",
+                                      "value": "<string>",
+                                      "description": "(Required) Organization name"
+                                    },
+                                    {
+                                      "id": "02745beb-98a8-48f8-a039-73f4b9374137",
+                                      "key": "tenant",
+                                      "value": "<string>",
+                                      "description": "(Required) Tenant name"
+                                    },
+                                    {
+                                      "id": "f831b766-c0fd-4a25-9791-eed7b79427fb",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) Workspace name"
+                                    }
+                                  ]
+                                },
+                                "description": "Updates an existing workspace."
+                              },
+                              "response": [
+                                {
+                                  "id": "4b0592b3-3869-4f26-8f52-5c22f70b5190",
+                                  "name": "Updated workspace",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization"
+                                        },
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "workspace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-10-21T21:01:15.000Z",
+                                  "updatedAt": "2026-10-21T21:01:15.000Z",
+                                  "uid": "35240-4b0592b3-3869-4f26-8f52-5c22f70b5190"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T21:01:14.000Z",
+                              "updatedAt": "2026-10-21T21:01:14.000Z",
+                              "uid": "35240-d889b5e4-300a-4df2-b4f9-d1a2b5c7a26b"
+                            },
+                            {
+                              "name": "Delete Workspace",
+                              "id": "52ed0a23-6d99-4966-b8a9-73f95d7c627e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organization",
+                                    "tenants",
+                                    ":tenant",
+                                    "workspaces",
+                                    ":workspace"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "af3a44df-82c0-498c-be27-ad944ae30076",
+                                      "key": "organization",
+                                      "value": "<string>",
+                                      "description": "(Required) Organization name"
+                                    },
+                                    {
+                                      "id": "341b424f-4a64-4524-ad5e-8db9302fbb81",
+                                      "key": "tenant",
+                                      "value": "<string>",
+                                      "description": "(Required) Tenant name"
+                                    },
+                                    {
+                                      "id": "0001979b-7074-4c15-806e-b5486ec83c2d",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) Workspace name"
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes a workspace and all its groups."
+                              },
+                              "response": [
+                                {
+                                  "id": "1a3c9659-efac-4f76-b20c-f59d991936ec",
+                                  "name": "Workspace deleted",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization"
+                                        },
+                                        {
+                                          "key": "tenant"
+                                        },
+                                        {
+                                          "key": "workspace"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T21:01:15.000Z",
+                                  "updatedAt": "2026-10-21T21:01:15.000Z",
+                                  "uid": "35240-1a3c9659-efac-4f76-b20c-f59d991936ec"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T21:01:14.000Z",
+                              "updatedAt": "2026-10-21T21:01:14.000Z",
+                              "uid": "35240-52ed0a23-6d99-4966-b8a9-73f95d7c627e"
+                            }
+                          ],
+                          "id": "ea12bed6-502a-4c41-9c4e-09f5e3b51081",
+                          "createdAt": "2026-10-21T21:01:14.000Z",
+                          "updatedAt": "2026-10-21T21:01:14.000Z",
+                          "uid": "35240-ea12bed6-502a-4c41-9c4e-09f5e3b51081"
+                        },
+                        {
+                          "name": "List Workspaces",
+                          "id": "813c975c-ec6e-40d7-a51d-4b7a5a4725aa",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "tenants",
+                                ":tenant",
+                                "workspaces"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c9d78ffc-d075-4972-a4b7-332edf9bb325",
+                                  "key": "organization",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization name"
+                                },
+                                {
+                                  "id": "98773f30-0ceb-4250-b73b-54b55342bec2",
+                                  "key": "tenant",
+                                  "value": "<string>",
+                                  "description": "(Required) Tenant name"
+                                }
+                              ]
+                            },
+                            "description": "Returns all workspaces within a tenant."
+                          },
+                          "response": [
+                            {
+                              "id": "758061ac-fe16-431e-bada-15cdf6406a9f",
+                              "name": "List of workspaces",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organization",
+                                    "tenants",
+                                    ":tenant",
+                                    "workspaces"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organization"
+                                    },
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"workspaces\": [\n    {\n      \"spec\": {\n        \"displayName\": \"Duis Lorem et Exce\",\n        \"description\": \"veniam proident in\",\n        \"namespaceSelector\": {\n          \"names\": [\n            \"sint nulla\",\n            \"ullamco in culpa\"\n          ]\n        }\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"sed3ac\": \"<string>\",\n        \"Loremf\": \"<string>\",\n        \"incididunt_06e\": \"<string>\",\n        \"veniam_b_\": \"<string>\"\n      },\n      \"annotations\": {\n        \"veniam3\": \"<string>\"\n      }\n    },\n    {\n      \"spec\": {\n        \"displayName\": \"qui incididunt\",\n        \"description\": \"ut reprehenderit et\",\n        \"namespaceSelector\": {\n          \"names\": [\n            \"ea dolor\",\n            \"et aliqua\"\n          ]\n        }\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"adipisicing5d\": \"<string>\",\n        \"exercitation1a8\": \"<string>\"\n      },\n      \"annotations\": {\n        \"occaecat_7\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-10-21T21:01:15.000Z",
+                              "updatedAt": "2026-10-21T21:01:15.000Z",
+                              "uid": "35240-758061ac-fe16-431e-bada-15cdf6406a9f"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T21:01:14.000Z",
+                          "updatedAt": "2026-10-21T21:01:14.000Z",
+                          "uid": "35240-813c975c-ec6e-40d7-a51d-4b7a5a4725aa"
+                        },
+                        {
+                          "name": "Create Workspace",
+                          "id": "81afab10-c425-41df-b145-e78360d4cfc5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "tenants",
+                                ":tenant",
+                                "workspaces"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3859619c-2192-40d8-993c-6647a52316d2",
+                                  "key": "organization",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization name"
+                                },
+                                {
+                                  "id": "1dee8d8c-00a4-479a-aaee-9502bf264dd0",
+                                  "key": "tenant",
+                                  "value": "<string>",
+                                  "description": "(Required) Tenant name"
+                                }
+                              ]
+                            },
+                            "description": "Creates a new workspace within a tenant."
+                          },
+                          "response": [
+                            {
+                              "id": "af25f1c3-df48-4a1f-a913-025fc3543031",
+                              "name": "Created workspace",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organization",
+                                    "tenants",
+                                    ":tenant",
+                                    "workspaces"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organization"
+                                    },
+                                    {
+                                      "key": "tenant"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"spec\": {\n    \"displayName\": \"sed laboris fugiat\",\n    \"description\": \"et laboris culpa\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"Excepteur tempor\",\n        \"ut sit\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"dolore__04\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Duis_8a_\": \"<string>\",\n    \"cillum91\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-10-21T21:01:15.000Z",
+                              "updatedAt": "2026-10-21T21:01:15.000Z",
+                              "uid": "35240-af25f1c3-df48-4a1f-a913-025fc3543031"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T21:01:14.000Z",
+                          "updatedAt": "2026-10-21T21:01:14.000Z",
+                          "uid": "35240-81afab10-c425-41df-b145-e78360d4cfc5"
+                        }
+                      ],
+                      "id": "261d97a4-2e5a-4ab6-8b87-e913327bf548",
+                      "createdAt": "2026-10-21T21:01:14.000Z",
+                      "updatedAt": "2026-10-21T21:01:14.000Z",
+                      "uid": "35240-261d97a4-2e5a-4ab6-8b87-e913327bf548"
+                    }
+                  ],
+                  "id": "9ff8e2cd-4906-4787-8ce7-94e7972a31a9",
+                  "createdAt": "2026-10-21T21:01:14.000Z",
+                  "updatedAt": "2026-10-21T21:01:14.000Z",
+                  "uid": "35240-9ff8e2cd-4906-4787-8ce7-94e7972a31a9"
                 }
               ],
-              "body": "{\n  \"workspaces\": [\n    {\n      \"spec\": {\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"namespaceSelector\": {\n          \"names\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"namespaceSelector\": {\n          \"names\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "a8872bef-9e84-46dc-8332-e97e707460ff",
+              "createdAt": "2026-10-21T21:01:14.000Z",
+              "updatedAt": "2026-10-21T21:01:14.000Z",
+              "uid": "35240-a8872bef-9e84-46dc-8332-e97e707460ff"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9b7ba9d2-5f7c-44f7-8fd0-815cadcc20d1",
-          "name": "Create Workspace",
-          "request": {
-            "name": "Create Workspace",
-            "description": {
-              "content": "Creates a new workspace within a tenant.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "2cda990b-972f-481a-a9ab-7fa7364b1222",
-              "name": "Created workspace",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "75c536c5-5f43-4ce8-83b6-c7b9b1dd1c82",
-          "name": "Get Workspace",
-          "request": {
-            "name": "Get Workspace",
-            "description": {
-              "content": "Returns the details of a specific workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "18c592d9-ff40-4983-8ac6-88cf478e3924",
-              "name": "Workspace details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8d116242-5807-498c-918d-2d8e85242ada",
-          "name": "Update Workspace",
-          "request": {
-            "name": "Update Workspace",
-            "description": {
-              "content": "Updates an existing workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f64c0966-da81-4a51-ab99-1a23956d3471",
-              "name": "Updated workspace",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"namespaceSelector\": {\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fb08d0af-451e-4edd-9b46-2b812072544f",
-          "name": "Delete Workspace",
-          "request": {
-            "name": "Delete Workspace",
-            "description": {
-              "content": "Deletes a workspace and all its groups.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "159a5837-0b9c-4f09-9bb1-a7a95fb5e885",
-              "name": "Workspace deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "aaa5717f-9560-494e-a9c7-c0bab2a7305e",
+          "createdAt": "2026-10-21T21:01:14.000Z",
+          "updatedAt": "2026-10-21T21:01:14.000Z",
+          "uid": "35240-aaa5717f-9560-494e-a9c7-c0bab2a7305e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Hostname of your TSB management plane",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "tsb.example.com",
-      "key": "tsb-host"
-    },
-    {
-      "type": "string",
-      "value": "https://{{tsb-host}}:8443/v2",
-      "key": "baseUrl"
+      "id": "09d55cea-3442-407d-97c8-743dd380d112",
+      "createdAt": "2026-10-21T21:01:14.000Z",
+      "updatedAt": "2026-10-21T21:01:14.000Z",
+      "uid": "35240-09d55cea-3442-407d-97c8-743dd380d112"
     }
   ],
   "auth": {
@@ -754,21 +660,24 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8c123f49-27e9-4c6b-8d62-20473c1aac18",
-    "name": "Tetrate Service Bridge REST APIs Workspaces API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "tsb-host",
+      "value": "tsb.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{tsb-host}}:8443/v2"
     }
-  }
+  ]
 }

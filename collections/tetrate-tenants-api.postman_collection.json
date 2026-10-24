@@ -1,662 +1,575 @@
 {
+  "info": {
+    "_postman_id": "d250081f-7cc0-451f-a6a4-aeb8ab245845",
+    "name": "Tetrate Service Bridge REST Tenants API",
+    "description": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:01:01.000Z",
+    "updatedAt": "2026-10-21T21:01:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d250081f-7cc0-451f-a6a4-aeb8ab245845"
+  },
   "item": [
     {
-      "id": "d5ba809b-f13a-48b3-ac3f-3f832e2c4346",
-      "name": "Tenants",
-      "description": {
-        "content": "Manage tenants within organizations",
-        "type": "text/plain"
-      },
+      "name": "organizations",
       "item": [
         {
-          "id": "4a4173d4-5e55-476f-9b33-8e104b450834",
-          "name": "List Tenants",
-          "request": {
-            "name": "List Tenants",
-            "description": {
-              "content": "Returns all tenants within an organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{organization}",
+          "item": [
             {
-              "id": "d2aca48e-14bc-45d4-b143-40b5b88a59d6",
-              "name": "List of tenants",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "tenants",
+              "item": [
+                {
+                  "name": "{tenant}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
+                      "name": "Get Tenant",
+                      "id": "40e78b90-6aaa-484a-a443-45403054e6d4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "tenants",
+                            ":tenant"
+                          ],
+                          "variable": [
+                            {
+                              "id": "26b62340-8d30-4948-8712-82042c3936b4",
+                              "key": "organization",
+                              "value": "<string>",
+                              "description": "(Required) Organization name"
+                            },
+                            {
+                              "id": "4c049404-5568-4b3f-bcbd-ed3293c018df",
+                              "key": "tenant",
+                              "value": "<string>",
+                              "description": "(Required) Tenant name"
+                            }
+                          ]
+                        },
+                        "description": "Returns the details of a specific tenant."
+                      },
+                      "response": [
+                        {
+                          "id": "37412149-e65c-456e-b84e-14a7093e438d",
+                          "name": "Tenant details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "tenants",
+                                ":tenant"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organization"
+                                },
+                                {
+                                  "key": "tenant"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-21T21:01:02.000Z",
+                          "updatedAt": "2026-10-21T21:01:02.000Z",
+                          "uid": "35240-37412149-e65c-456e-b84e-14a7093e438d"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:01:02.000Z",
+                      "updatedAt": "2026-10-21T21:01:02.000Z",
+                      "uid": "35240-40e78b90-6aaa-484a-a443-45403054e6d4"
                     },
                     {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
+                      "name": "Update Tenant",
+                      "id": "113a10be-5932-4b0b-86f0-e9ddcede0e6d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "tenants",
+                            ":tenant"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9240ca47-de5f-4c64-b829-1791b7ff5186",
+                              "key": "organization",
+                              "value": "<string>",
+                              "description": "(Required) Organization name"
+                            },
+                            {
+                              "id": "6a7e6aa1-755b-4bb6-8cbd-70329e720a2b",
+                              "key": "tenant",
+                              "value": "<string>",
+                              "description": "(Required) Tenant name"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing tenant configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "69051d52-9db2-4d62-81f9-c3a394fe3799",
+                          "name": "Updated tenant",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "tenants",
+                                ":tenant"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organization"
+                                },
+                                {
+                                  "key": "tenant"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-21T21:01:02.000Z",
+                          "updatedAt": "2026-10-21T21:01:02.000Z",
+                          "uid": "35240-69051d52-9db2-4d62-81f9-c3a394fe3799"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:01:02.000Z",
+                      "updatedAt": "2026-10-21T21:01:02.000Z",
+                      "uid": "35240-113a10be-5932-4b0b-86f0-e9ddcede0e6d"
+                    },
+                    {
+                      "name": "Delete Tenant",
+                      "id": "14538d66-9462-40a9-aed6-7ed558460c9e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "tenants",
+                            ":tenant"
+                          ],
+                          "variable": [
+                            {
+                              "id": "10b7628d-0a33-4849-8440-7bbbf2f7f1c0",
+                              "key": "organization",
+                              "value": "<string>",
+                              "description": "(Required) Organization name"
+                            },
+                            {
+                              "id": "617d58f6-bdee-4235-8356-74ca136eae6a",
+                              "key": "tenant",
+                              "value": "<string>",
+                              "description": "(Required) Tenant name"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a tenant and all its workspaces."
+                      },
+                      "response": [
+                        {
+                          "id": "93f0ecfc-ef72-4b60-86ac-2c1ae6e8a87e",
+                          "name": "Tenant deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organization",
+                                "tenants",
+                                ":tenant"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organization"
+                                },
+                                {
+                                  "key": "tenant"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T21:01:02.000Z",
+                          "updatedAt": "2026-10-21T21:01:02.000Z",
+                          "uid": "35240-93f0ecfc-ef72-4b60-86ac-2c1ae6e8a87e"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T21:01:02.000Z",
+                      "updatedAt": "2026-10-21T21:01:02.000Z",
+                      "uid": "35240-14538d66-9462-40a9-aed6-7ed558460c9e"
                     }
-                  ]
+                  ],
+                  "id": "d1fe10ef-ace3-4fa3-954d-94115da0a33b",
+                  "createdAt": "2026-10-21T21:01:02.000Z",
+                  "updatedAt": "2026-10-21T21:01:02.000Z",
+                  "uid": "35240-d1fe10ef-ace3-4fa3-954d-94115da0a33b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "List Tenants",
+                  "id": "c4d2580a-180e-4b33-883a-697fcd9510f2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"tenants\": [\n    {\n      \"spec\": {\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"deletionProtectionEnabled\": false\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"deletionProtectionEnabled\": false\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4bc9d6b9-5067-43fa-9443-82391636062d",
-          "name": "Create Tenant",
-          "request": {
-            "name": "Create Tenant",
-            "description": {
-              "content": "Creates a new tenant within an organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c88a8dd0-8495-4ae9-b8ad-56966e87925e",
-              "name": "Created tenant",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization/tenants",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization",
+                        "tenants"
+                      ],
+                      "variable": [
+                        {
+                          "id": "821b4ac4-0afc-4847-a067-5387128c6446",
+                          "key": "organization",
+                          "value": "<string>",
+                          "description": "(Required) Organization name"
+                        }
+                      ]
                     },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "Returns all tenants within an organization."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "response": [
+                    {
+                      "id": "2e1590e3-ff5c-4321-992b-98364efca117",
+                      "name": "List of tenants",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/tenants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "tenants"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"tenants\": [\n    {\n      \"spec\": {\n        \"displayName\": \"pariatur in magna\",\n        \"description\": \"in consequat sint inci\",\n        \"deletionProtectionEnabled\": false\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"id_0\": \"<string>\"\n      },\n      \"annotations\": {\n        \"in_b6\": \"<string>\",\n        \"officia6\": \"<string>\"\n      }\n    },\n    {\n      \"spec\": {\n        \"displayName\": \"cillum reprehenderit sint sit consectetur\",\n        \"description\": \"consectetur velit labore\",\n        \"deletionProtectionEnabled\": true\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"labore67\": \"<string>\",\n        \"minim_0dc\": \"<string>\"\n      },\n      \"annotations\": {\n        \"dolore_a5b\": \"<string>\",\n        \"dolore_0\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:01:02.000Z",
+                      "updatedAt": "2026-10-21T21:01:02.000Z",
+                      "uid": "35240-2e1590e3-ff5c-4321-992b-98364efca117"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e074d2e9-eecf-4788-ba8c-9094e02e4024",
-          "name": "Get Tenant",
-          "request": {
-            "name": "Get Tenant",
-            "description": {
-              "content": "Returns the details of a specific tenant.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7c04be29-3a69-4f12-8417-7e5fcaf4ab44",
-              "name": "Tenant details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
+                  "createdAt": "2026-10-21T21:01:02.000Z",
+                  "updatedAt": "2026-10-21T21:01:02.000Z",
+                  "uid": "35240-c4d2580a-180e-4b33-883a-697fcd9510f2"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "Create Tenant",
+                  "id": "a233cfde-374b-465f-9e3b-351fe544e36d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3800b2e1-df4c-4645-8335-bf67018e6792",
-          "name": "Update Tenant",
-          "request": {
-            "name": "Update Tenant",
-            "description": {
-              "content": "Updates an existing tenant configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "9239a5d2-c265-4389-a14e-5a05c6fd9705",
-              "name": "Updated tenant",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization/tenants",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization",
+                        "tenants"
+                      ],
+                      "variable": [
+                        {
+                          "id": "af06a56a-3bdd-450e-b025-aa7c8cf36b7d",
+                          "key": "organization",
+                          "value": "<string>",
+                          "description": "(Required) Organization name"
+                        }
+                      ]
                     },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "Creates a new tenant within an organization."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "response": [
+                    {
+                      "id": "1251e7f7-b284-4096-b048-2424685fab38",
+                      "name": "Created tenant",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization/tenants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization",
+                            "tenants"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"spec\": {\n    \"displayName\": \"aute ex in\",\n    \"description\": \"tempor \",\n    \"deletionProtectionEnabled\": false\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"elit1cd\": \"<string>\",\n    \"mollit2bf\": \"<string>\",\n    \"incididuntd84\": \"<string>\"\n  },\n  \"annotations\": {\n    \"dolor_5a0\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T21:01:02.000Z",
+                      "updatedAt": "2026-10-21T21:01:02.000Z",
+                      "uid": "35240-1251e7f7-b284-4096-b048-2424685fab38"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-21T21:01:02.000Z",
+                  "updatedAt": "2026-10-21T21:01:02.000Z",
+                  "uid": "35240-a233cfde-374b-465f-9e3b-351fe544e36d"
                 }
               ],
-              "body": "{\n  \"spec\": {\n    \"displayName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"deletionProtectionEnabled\": \"<boolean>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "2652ec7c-a205-460c-a828-6adcb2e7ef58",
+              "createdAt": "2026-10-21T21:01:02.000Z",
+              "updatedAt": "2026-10-21T21:01:02.000Z",
+              "uid": "35240-2652ec7c-a205-460c-a828-6adcb2e7ef58"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a33b39e4-8ab8-4dd9-a5e0-851785392d62",
-          "name": "Delete Tenant",
-          "request": {
-            "name": "Delete Tenant",
-            "description": {
-              "content": "Deletes a tenant and all its workspaces.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "41d59c36-25dc-46fb-8900-0a74e22ad6a8",
-              "name": "Tenant deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a3e7344f-65af-4999-9691-0396d38ec6c9",
+          "createdAt": "2026-10-21T21:01:02.000Z",
+          "updatedAt": "2026-10-21T21:01:02.000Z",
+          "uid": "35240-a3e7344f-65af-4999-9691-0396d38ec6c9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Hostname of your TSB management plane",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "tsb.example.com",
-      "key": "tsb-host"
-    },
-    {
-      "type": "string",
-      "value": "https://{{tsb-host}}:8443/v2",
-      "key": "baseUrl"
+      "id": "edfdbbcd-6a83-4435-9e25-1b406f135795",
+      "createdAt": "2026-10-21T21:01:02.000Z",
+      "updatedAt": "2026-10-21T21:01:02.000Z",
+      "uid": "35240-edfdbbcd-6a83-4435-9e25-1b406f135795"
     }
   ],
   "auth": {
@@ -664,21 +577,24 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ec39d9d2-77d8-4713-9984-1bc5cf0d493d",
-    "name": "Tetrate Service Bridge REST APIs Tenants API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "tsb-host",
+      "value": "tsb.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{tsb-host}}:8443/v2"
     }
-  }
+  ]
 }

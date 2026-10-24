@@ -1,345 +1,337 @@
 {
+  "info": {
+    "_postman_id": "80473566-2dfd-4e0b-b7ad-68c6758f0d8f",
+    "name": "Tetrate Service Bridge REST Security Groups API",
+    "description": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:53.000Z",
+    "updatedAt": "2026-10-21T21:00:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-80473566-2dfd-4e0b-b7ad-68c6758f0d8f"
+  },
   "item": [
     {
-      "id": "94d668f7-ec57-498d-b110-3cc2fb9938a5",
-      "name": "Security Groups",
-      "description": {
-        "content": "Manage security settings and policies",
-        "type": "text/plain"
-      },
+      "name": "organizations",
       "item": [
         {
-          "id": "ba3f5045-b447-4a78-95ff-c357151804f1",
-          "name": "List Security Groups",
-          "request": {
-            "name": "List Security Groups",
-            "description": {
-              "content": "Returns all security groups within a workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace",
-                "securitygroups"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{organization}",
+          "item": [
             {
-              "id": "14cc516b-59ea-497d-949f-a2976474e0a8",
-              "name": "List of security groups",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace",
-                    "securitygroups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "tenants",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "workspaces",
+                      "item": [
+                        {
+                          "name": "{workspace}",
+                          "item": [
+                            {
+                              "name": "securitygroups",
+                              "item": [
+                                {
+                                  "name": "List Security Groups",
+                                  "id": "18686901-385a-4ac8-83e2-e599dfcc829b",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/securitygroups",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace",
+                                        "securitygroups"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "31e7a117-cc26-4a2c-ad2b-75d38486c244",
+                                          "key": "organization",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization name"
+                                        },
+                                        {
+                                          "id": "8f20b1db-8f2f-4fc0-9aa3-aa3a16feb0a3",
+                                          "key": "tenant",
+                                          "value": "<string>",
+                                          "description": "(Required) Tenant name"
+                                        },
+                                        {
+                                          "id": "9fc6f5c5-0f2c-4769-a24d-123d37beab37",
+                                          "key": "workspace",
+                                          "value": "<string>",
+                                          "description": "(Required) Workspace name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns all security groups within a workspace."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f26c6fd6-a290-428e-a32a-a7ae0f29dbe9",
+                                      "name": "List of security groups",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/securitygroups",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organization",
+                                            "tenants",
+                                            ":tenant",
+                                            "workspaces",
+                                            ":workspace",
+                                            "securitygroups"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization"
+                                            },
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workspace"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"securityGroups\": [\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"Lorem_25e\": \"<string>\",\n        \"tempor_cb\": \"<string>\"\n      },\n      \"annotations\": {\n        \"non_44d\": \"<string>\",\n        \"voluptate8\": \"<string>\",\n        \"Duis_8f0\": \"<string>\",\n        \"amet1\": \"<string>\",\n        \"utd\": \"<string>\"\n      }\n    },\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"in_895\": \"<string>\"\n      },\n      \"annotations\": {\n        \"dolorac\": \"<string>\",\n        \"ad_ba\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                      "createdAt": "2026-10-21T21:00:53.000Z",
+                                      "updatedAt": "2026-10-21T21:00:53.000Z",
+                                      "uid": "35240-f26c6fd6-a290-428e-a32a-a7ae0f29dbe9"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T21:00:53.000Z",
+                                  "updatedAt": "2026-10-21T21:00:53.000Z",
+                                  "uid": "35240-18686901-385a-4ac8-83e2-e599dfcc829b"
+                                },
+                                {
+                                  "name": "Create Security Group",
+                                  "id": "1b347f07-c416-46d7-99a7-2f0452c6d417",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": {},\n    \"configMode\": \"DIRECT\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"exercitation_3\": \"<string>\",\n    \"estcc\": \"<string>\"\n  },\n  \"annotations\": {\n    \"veniam_d_c\": \"<string>\",\n    \"amet83f\": \"<string>\",\n    \"id_90d\": \"<string>\",\n    \"minim6da\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/securitygroups",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace",
+                                        "securitygroups"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "c66ea1f2-b746-4edb-9e75-666ebc8ecd26",
+                                          "key": "organization",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization name"
+                                        },
+                                        {
+                                          "id": "6add1677-830a-4720-91ab-dc766cac5ffa",
+                                          "key": "tenant",
+                                          "value": "<string>",
+                                          "description": "(Required) Tenant name"
+                                        },
+                                        {
+                                          "id": "e319b015-0d08-44c9-a463-c91e06351beb",
+                                          "key": "workspace",
+                                          "value": "<string>",
+                                          "description": "(Required) Workspace name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Creates a new security group for managing authorization policies."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "31b666d8-5e5f-42dd-a2f8-7ced5db52b79",
+                                      "name": "Created security group",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": {},\n    \"configMode\": \"DIRECT\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"exercitation_3\": \"<string>\",\n    \"estcc\": \"<string>\"\n  },\n  \"annotations\": {\n    \"veniam_d_c\": \"<string>\",\n    \"amet83f\": \"<string>\",\n    \"id_90d\": \"<string>\",\n    \"minim6da\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/securitygroups",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organization",
+                                            "tenants",
+                                            ":tenant",
+                                            "workspaces",
+                                            ":workspace",
+                                            "securitygroups"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization"
+                                            },
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workspace"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"spec\": {\n    \"namespaceSelector\": {},\n    \"configMode\": \"DIRECT\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"exercitation_3\": \"<string>\",\n    \"estcc\": \"<string>\"\n  },\n  \"annotations\": {\n    \"veniam_d_c\": \"<string>\",\n    \"amet83f\": \"<string>\",\n    \"id_90d\": \"<string>\",\n    \"minim6da\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-10-21T21:00:53.000Z",
+                                      "updatedAt": "2026-10-21T21:00:53.000Z",
+                                      "uid": "35240-31b666d8-5e5f-42dd-a2f8-7ced5db52b79"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T21:00:53.000Z",
+                                  "updatedAt": "2026-10-21T21:00:53.000Z",
+                                  "uid": "35240-1b347f07-c416-46d7-99a7-2f0452c6d417"
+                                }
+                              ],
+                              "id": "1cc17b8e-b26c-48bd-a8ad-c8b8aa7eee6e",
+                              "createdAt": "2026-10-21T21:00:53.000Z",
+                              "updatedAt": "2026-10-21T21:00:53.000Z",
+                              "uid": "35240-1cc17b8e-b26c-48bd-a8ad-c8b8aa7eee6e"
+                            }
+                          ],
+                          "id": "81603c0c-dfe5-43eb-8877-6f565f6b4022",
+                          "createdAt": "2026-10-21T21:00:53.000Z",
+                          "updatedAt": "2026-10-21T21:00:53.000Z",
+                          "uid": "35240-81603c0c-dfe5-43eb-8877-6f565f6b4022"
+                        }
+                      ],
+                      "id": "71713599-01b1-4d84-9986-3a6af67cb8ee",
+                      "createdAt": "2026-10-21T21:00:53.000Z",
+                      "updatedAt": "2026-10-21T21:00:53.000Z",
+                      "uid": "35240-71713599-01b1-4d84-9986-3a6af67cb8ee"
+                    }
+                  ],
+                  "id": "f63d8f1e-3aa9-4711-9f52-ea7ec4617c83",
+                  "createdAt": "2026-10-21T21:00:53.000Z",
+                  "updatedAt": "2026-10-21T21:00:53.000Z",
+                  "uid": "35240-f63d8f1e-3aa9-4711-9f52-ea7ec4617c83"
                 }
               ],
-              "body": "{\n  \"securityGroups\": [\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"DIRECT\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "594608e0-c6da-4944-92a7-a2ce5826b50d",
+              "createdAt": "2026-10-21T21:00:53.000Z",
+              "updatedAt": "2026-10-21T21:00:53.000Z",
+              "uid": "35240-594608e0-c6da-4944-92a7-a2ce5826b50d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "19490c07-d160-4ccf-bede-83f9bece43f9",
-          "name": "Create Security Group",
-          "request": {
-            "name": "Create Security Group",
-            "description": {
-              "content": "Creates a new security group for managing authorization policies.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace",
-                "securitygroups"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ff075f7c-d704-4fdb-853e-293c15ffdbf6",
-              "name": "Created security group",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace",
-                    "securitygroups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6b76dcf0-5c4c-47bc-b22a-6d2b89c664f9",
+          "createdAt": "2026-10-21T21:00:53.000Z",
+          "updatedAt": "2026-10-21T21:00:53.000Z",
+          "uid": "35240-6b76dcf0-5c4c-47bc-b22a-6d2b89c664f9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Hostname of your TSB management plane",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "tsb.example.com",
-      "key": "tsb-host"
-    },
-    {
-      "type": "string",
-      "value": "https://{{tsb-host}}:8443/v2",
-      "key": "baseUrl"
+      "id": "122d38d0-3fbe-4cbf-935e-ac3c5ab9ebd9",
+      "createdAt": "2026-10-21T21:00:53.000Z",
+      "updatedAt": "2026-10-21T21:00:53.000Z",
+      "uid": "35240-122d38d0-3fbe-4cbf-935e-ac3c5ab9ebd9"
     }
   ],
   "auth": {
@@ -347,21 +339,24 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6fd5183f-7ea2-4782-a0d3-412c7a79bb91",
-    "name": "Tetrate Service Bridge REST APIs Security Groups API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "tsb-host",
+      "value": "tsb.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{tsb-host}}:8443/v2"
     }
-  }
+  ]
 }

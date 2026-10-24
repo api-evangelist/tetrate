@@ -1,345 +1,337 @@
 {
+  "info": {
+    "_postman_id": "d597a85b-5bc0-4d2f-9890-5d872196c3f3",
+    "name": "Tetrate Service Bridge REST Gateway Groups API",
+    "description": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:00:33.000Z",
+    "updatedAt": "2026-10-21T21:00:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d597a85b-5bc0-4d2f-9890-5d872196c3f3"
+  },
   "item": [
     {
-      "id": "cb296fb6-bd9a-4e17-81a0-9c2dc129f019",
-      "name": "Gateway Groups",
-      "description": {
-        "content": "Manage gateway groups and ingress/egress gateways",
-        "type": "text/plain"
-      },
+      "name": "organizations",
       "item": [
         {
-          "id": "80cf9051-ff77-469f-a36a-724375eaa8c2",
-          "name": "List Gateway Groups",
-          "request": {
-            "name": "List Gateway Groups",
-            "description": {
-              "content": "Returns all gateway groups within a workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace",
-                "gatewaygroups"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{organization}",
+          "item": [
             {
-              "id": "4a93d4ba-f69c-4793-ac51-86c21d5ade80",
-              "name": "List of gateway groups",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace",
-                    "gatewaygroups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "tenants",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{tenant}",
+                  "item": [
+                    {
+                      "name": "workspaces",
+                      "item": [
+                        {
+                          "name": "{workspace}",
+                          "item": [
+                            {
+                              "name": "gatewaygroups",
+                              "item": [
+                                {
+                                  "name": "List Gateway Groups",
+                                  "id": "2f514de5-1731-4252-a239-4e882a89be24",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace",
+                                        "gatewaygroups"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "836ce126-af43-472a-986f-b037e6538473",
+                                          "key": "organization",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization name"
+                                        },
+                                        {
+                                          "id": "00413009-9882-412c-8138-eabc40b9b145",
+                                          "key": "tenant",
+                                          "value": "<string>",
+                                          "description": "(Required) Tenant name"
+                                        },
+                                        {
+                                          "id": "2da9f04f-b854-4780-a1c0-f1d755cd8d4a",
+                                          "key": "workspace",
+                                          "value": "<string>",
+                                          "description": "(Required) Workspace name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Returns all gateway groups within a workspace."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "00abd8b8-0143-476b-ae7f-5d2050797e46",
+                                      "name": "List of gateway groups",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organization",
+                                            "tenants",
+                                            ":tenant",
+                                            "workspaces",
+                                            ":workspace",
+                                            "gatewaygroups"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization"
+                                            },
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workspace"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"gatewayGroups\": [\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"BRIDGED\"\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"aute7_4\": \"<string>\"\n      },\n      \"annotations\": {\n        \"Excepteur_8\": \"<string>\",\n        \"laborum_3b9\": \"<string>\",\n        \"est_5\": \"<string>\"\n      }\n    },\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"BRIDGED\"\n      },\n      \"name\": \"<string>\",\n      \"fqn\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"labels\": {\n        \"eu_2b8\": \"<string>\",\n        \"sit_136\": \"<string>\"\n      },\n      \"annotations\": {\n        \"in7af\": \"<string>\",\n        \"deserunt_\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                      "createdAt": "2026-10-21T21:00:33.000Z",
+                                      "updatedAt": "2026-10-21T21:00:33.000Z",
+                                      "uid": "35240-00abd8b8-0143-476b-ae7f-5d2050797e46"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T21:00:33.000Z",
+                                  "updatedAt": "2026-10-21T21:00:33.000Z",
+                                  "uid": "35240-2f514de5-1731-4252-a239-4e882a89be24"
+                                },
+                                {
+                                  "name": "Create Gateway Group",
+                                  "id": "d1f0c00e-9574-435f-8d7c-e9db709e6c60",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": {},\n    \"configMode\": \"DIRECT\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"nostrud_63\": \"<string>\",\n    \"in_8a\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Excepteurfa\": \"<string>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organization",
+                                        "tenants",
+                                        ":tenant",
+                                        "workspaces",
+                                        ":workspace",
+                                        "gatewaygroups"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "57260ef7-1929-4c49-9a03-20ea9d47c6cc",
+                                          "key": "organization",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization name"
+                                        },
+                                        {
+                                          "id": "c48bb761-8f97-4e8b-aaf0-75684b5fc2fb",
+                                          "key": "tenant",
+                                          "value": "<string>",
+                                          "description": "(Required) Tenant name"
+                                        },
+                                        {
+                                          "id": "b8bf0c21-756a-4441-9f18-1f270b2a12e2",
+                                          "key": "workspace",
+                                          "value": "<string>",
+                                          "description": "(Required) Workspace name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Creates a new gateway group within a workspace."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "798f8704-5084-4d02-9069-64d1a6c8b73c",
+                                      "name": "Created gateway group",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": {},\n    \"configMode\": \"DIRECT\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"nostrud_63\": \"<string>\",\n    \"in_8a\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Excepteurfa\": \"<string>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organization/tenants/:tenant/workspaces/:workspace/gatewaygroups",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organization",
+                                            "tenants",
+                                            ":tenant",
+                                            "workspaces",
+                                            ":workspace",
+                                            "gatewaygroups"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization"
+                                            },
+                                            {
+                                              "key": "tenant"
+                                            },
+                                            {
+                                              "key": "workspace"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"spec\": {\n    \"namespaceSelector\": {},\n    \"configMode\": \"DIRECT\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"nostrud_63\": \"<string>\",\n    \"in_8a\": \"<string>\"\n  },\n  \"annotations\": {\n    \"Excepteurfa\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-10-21T21:00:33.000Z",
+                                      "updatedAt": "2026-10-21T21:00:33.000Z",
+                                      "uid": "35240-798f8704-5084-4d02-9069-64d1a6c8b73c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T21:00:33.000Z",
+                                  "updatedAt": "2026-10-21T21:00:33.000Z",
+                                  "uid": "35240-d1f0c00e-9574-435f-8d7c-e9db709e6c60"
+                                }
+                              ],
+                              "id": "6daac7b1-01d3-40b3-a483-51ec02e777b6",
+                              "createdAt": "2026-10-21T21:00:33.000Z",
+                              "updatedAt": "2026-10-21T21:00:33.000Z",
+                              "uid": "35240-6daac7b1-01d3-40b3-a483-51ec02e777b6"
+                            }
+                          ],
+                          "id": "0777559f-ae13-4dc2-94dc-9e5d4d658f03",
+                          "createdAt": "2026-10-21T21:00:33.000Z",
+                          "updatedAt": "2026-10-21T21:00:33.000Z",
+                          "uid": "35240-0777559f-ae13-4dc2-94dc-9e5d4d658f03"
+                        }
+                      ],
+                      "id": "c85aeb19-b072-4860-8b5e-dd58a44c8fc4",
+                      "createdAt": "2026-10-21T21:00:33.000Z",
+                      "updatedAt": "2026-10-21T21:00:33.000Z",
+                      "uid": "35240-c85aeb19-b072-4860-8b5e-dd58a44c8fc4"
+                    }
+                  ],
+                  "id": "3ec63a3a-4428-48f9-8bcd-06f7d373bb14",
+                  "createdAt": "2026-10-21T21:00:33.000Z",
+                  "updatedAt": "2026-10-21T21:00:33.000Z",
+                  "uid": "35240-3ec63a3a-4428-48f9-8bcd-06f7d373bb14"
                 }
               ],
-              "body": "{\n  \"gatewayGroups\": [\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"BRIDGED\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"spec\": {\n        \"namespaceSelector\": {},\n        \"configMode\": \"BRIDGED\"\n      },\n      \"name\": \"string\",\n      \"fqn\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"etag\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"annotations\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b40302e5-d688-4932-ba9c-c0a7496a8abf",
+              "createdAt": "2026-10-21T21:00:33.000Z",
+              "updatedAt": "2026-10-21T21:00:33.000Z",
+              "uid": "35240-b40302e5-d688-4932-ba9c-c0a7496a8abf"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e2e028cb-cc6e-4782-92d3-b3eb4b50da5d",
-          "name": "Create Gateway Group",
-          "request": {
-            "name": "Create Gateway Group",
-            "description": {
-              "content": "Creates a new gateway group within a workspace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "organizations",
-                ":organization",
-                "tenants",
-                ":tenant",
-                "workspaces",
-                ":workspace",
-                "gatewaygroups"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "organization",
-                  "description": "(Required) Organization name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant",
-                  "description": "(Required) Tenant name"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "workspace",
-                  "description": "(Required) Workspace name"
-                },
-                {
-                  "description": "Hostname of your TSB management plane",
-                  "type": "any",
-                  "value": "{{tsb-host}}",
-                  "key": "tsb-host"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ac2182c0-8829-454a-acb0-6008c7a5a1cb",
-              "name": "Created gateway group",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "organizations",
-                    ":organization",
-                    "tenants",
-                    ":tenant",
-                    "workspaces",
-                    ":workspace",
-                    "gatewaygroups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "organization",
-                      "description": "(Required) Organization name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant",
-                      "description": "(Required) Tenant name"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "workspace",
-                      "description": "(Required) Workspace name"
-                    },
-                    {
-                      "description": "Hostname of your TSB management plane",
-                      "type": "any",
-                      "value": "{{tsb-host}}",
-                      "key": "tsb-host"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"spec\": {\n    \"namespaceSelector\": \"<object>\",\n    \"configMode\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"fqn\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"annotations\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "7741a9b1-a3e9-4b20-9ef9-d652c93e1ee2",
+          "createdAt": "2026-10-21T21:00:33.000Z",
+          "updatedAt": "2026-10-21T21:00:33.000Z",
+          "uid": "35240-7741a9b1-a3e9-4b20-9ef9-d652c93e1ee2"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "Hostname of your TSB management plane",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "tsb.example.com",
-      "key": "tsb-host"
-    },
-    {
-      "type": "string",
-      "value": "https://{{tsb-host}}:8443/v2",
-      "key": "baseUrl"
+      "id": "3596926b-bf99-45d3-b55a-b60f7bce204e",
+      "createdAt": "2026-10-21T21:00:33.000Z",
+      "updatedAt": "2026-10-21T21:00:33.000Z",
+      "uid": "35240-3596926b-bf99-45d3-b55a-b60f7bce204e"
     }
   ],
   "auth": {
@@ -347,21 +339,24 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6d6b22ab-06bc-4885-adb5-67030e8d645f",
-    "name": "Tetrate Service Bridge REST APIs Gateway Groups API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Tetrate Service Bridge (TSB) REST API provides programmatic management of the TSB control plane. It exposes endpoints for managing organizations, tenants, workspaces, cluster onboarding, gateway configuration, traffic routing, security policies, and application/API lifecycle management across multi-cluster, multi-cloud service mesh environments. The API uses Protobuf-backed REST resources and supports standard CRUD operations via HTTP verbs.\n\nContact Support:\n Name: Tetrate",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "tsb-host",
+      "value": "tsb.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{tsb-host}}:8443/v2"
     }
-  }
+  ]
 }
